@@ -1,0 +1,64 @@
+.pointer {
+    position: absolute;
+    bottom: 14px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    width: 100%;
+
+
+
+    .circle .pointer-item {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        background-color: #ebedf0;
+        border-radius: 100%;
+        opacity: .3;
+    }
+
+    .strip .pointer-item {
+        display: inline-block;
+        width: 12px;
+        height: 2px;
+        background-color: #c5c5c5;
+    }
+
+
+    .pointer-item+.pointer-item {
+        margin-left: 6px;
+    }
+
+
+    .pointer-content {
+        margin: 0 20px;
+        width: 100%;
+        box-sizing: border-box;
+        text-align: right;
+
+        /deep/ .active {
+            background-color: #f44;
+            opacity: 1;
+        }
+    }
+
+    .pointer-text {
+        margin: 0 20px;
+        width: 100%;
+        text-align: center;
+
+        span {
+            display: inline-block;
+            min-width: 18px;
+            height: 18px;
+            padding: 0 5px;
+            color: #fff;
+            font-size: 12px;
+            line-height: 18px;
+            background: #000;
+            border-radius: 8px;
+            opacity: .3;
+        }
+    }
+
+}

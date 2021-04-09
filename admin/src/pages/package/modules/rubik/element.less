@@ -1,0 +1,122 @@
+.rubik-cube {
+    position: relative;
+    width: 750px;
+    height: 750px;
+    zoom: .5;
+    font-size: 28px;
+
+
+    .rubik-cube__item {
+        position: absolute;
+    }
+}
+
+.advertising {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: 12px;
+    zoom: .5;
+
+
+    .advertising-item-1 {
+        position: relative;
+        text-align: center;
+        font-weight: 400;
+        color: #8C8C8C;
+        width: 750px;
+        margin-bottom: -4px;
+
+        .advertising-item-tips {
+            width: 750px;
+            height: 750px;
+            line-height: 750px;
+            background: #F7F5FE;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .advertising-item-2 {
+        position: relative;
+        width: 750px;
+        display: flex;
+
+        .advertising-item-image {
+            flex: 1 1 auto;
+            width: 375px;
+
+            &:first-child .advertising-item-tips {
+                border-right: 0;
+            }
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+
+        }
+
+
+    }
+
+    .advertising-item-3 {
+        position: relative;
+        width: 750px;
+        display: flex;
+
+        .advertising-item-image {
+            flex: 1 1 1;
+            width: 250px;
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+
+        }
+
+
+    }
+
+    .advertising-item-4 {
+        position: relative;
+        width: 750px;
+        height: 375px;
+
+        .advertising-item-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+
+        }
+    }
+
+    .advertising-item-5 {
+        position: relative;
+        width: 750px;
+        display: flex;
+
+        .advertising-item-image {
+            flex: 1 1 1 1;
+            width: 187.5px;
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+
+        }
+    }
+}

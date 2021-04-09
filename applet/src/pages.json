@@ -1,0 +1,240 @@
+{
+    "pages": [
+        {
+            "path": "pages/index/index",
+            "style":
+            {
+                "navigationBarTitleText": "首页"
+            }
+        },
+        {
+            "path": "pages/user/index",
+            "style":
+            {
+                "navigationStyle": "custom"
+            }
+        },
+        {
+            "path": "pages/user/login",
+            "style":
+            {
+                "navigationBarTitleText": "登录"
+            }
+        },
+        // #ifdef H5
+        {
+            "path": "pages/user/bind-phone",
+            "style":
+            {
+                "h5":
+                {
+                    "navigationBarTitleText": "绑定手机"
+                }
+            }
+        },
+        // #endif
+        {
+            "path": "pages/user/shipping-address",
+            "style":
+            {
+                "navigationBarTitleText": "收货地址"
+            }
+        },
+        {
+            "path": "pages/user/address-edit",
+            "style":
+            {
+                "navigationBarTitleText": "新增收货地址"
+            }
+        },
+        {
+            "path": "pages/categories/index",
+            "style":
+            {
+                "disableScroll": true,
+                "navigationBarTitleText": "商品分类"
+            }
+        },
+        {
+            "path": "pages/cart/index",
+            "style":
+            {
+                "navigationBarTitleText": "购物车"
+            }
+        },
+        {
+            "path": "pages/goods/list",
+            "style":
+            {
+                "navigationBarTitleText": "全部商品"
+            }
+        },
+        {
+            "path": "pages/goods/search-list",
+            "style":
+            {
+                "navigationBarTitleText": "全部商品"
+            }
+        },
+        {
+            "path": "pages/goods/detail",
+            "style":
+            {
+                "navigationBarTitleText": "商品详情"
+            }
+        },
+        {
+            "path": "pages/goods/evaluation",
+            "style":
+            {
+                "navigationBarTitleText": "全部评价"
+            }
+        },
+        {
+            "path": "pages/goods/search",
+            "style":
+            {
+                "navigationBarTitleText": "全部商品"
+            }
+        },
+        {
+            "path": "pages/other/preview"
+        },
+        {
+            "path": "pages/other/map"
+        },
+        {
+            "path": "pages/other/buyer-message",
+            "style":
+            {
+                "navigationBarTitleText": "买家留言"
+            }
+        },
+        {
+            "path": "pages/other/error",
+            "style":
+            {
+                "navigationStyle": "custom"
+            }
+        },
+        {
+            "path": "pages/order/index",
+            "style":
+            {
+                "navigationBarTitleText": "我的订单"
+            }
+        },
+        {
+            "path": "pages/order/detail",
+            "style":
+            {
+                "navigationBarTitleText": "订单详情"
+            }
+        },
+        {
+            "path": "pages/order/evaluation",
+            "style":
+            {
+                "navigationBarTitleText": "评价晒单"
+            }
+        },
+        {
+            "path": "pages/order/apply",
+            "style":
+            {
+                "navigationBarTitleText": "申请售后"
+            }
+        },
+        {
+            "path": "pages/order/apply-detail",
+            "style":
+            {
+                "navigationBarTitleText": "申请售后"
+            }
+        },
+        {
+            "path": "pages/order/after-sales-records",
+            "style":
+            {
+                "navigationBarTitleText": "售后记录"
+            }
+        },
+        {
+            "path": "pages/order/after-sales-details",
+            "style":
+            {
+                "navigationBarTitleText": "售后详情"
+            }
+        },
+        {
+            "path": "pages/order/fill-return-information",
+            "style":
+            {
+                "h5":
+                {
+                    "titleNView": true
+                },
+                "mp-weixin":
+                {
+                    "navigationBarTitleText": "填写退货信息"
+                }
+            }
+        },
+        {
+            "path": "pages/order/submit",
+            "style":
+            {
+                "navigationBarTitleText": "结算"
+            }
+        },
+        {
+            "path": "pages/order/successful",
+            "style":
+            {
+                "navigationBarTitleText": "支付成功"
+            }
+        },
+        {
+            "path": "pages/page/index",
+            "style":
+            {
+                "navigationBarTitleText": "微页面"
+            }
+        }
+    ],
+    "tabBar":
+    {
+        "color": "#ccc",
+        "selectedColor": "#ff4c91",
+        "borderStyle": "black",
+        "backgroundColor": "#ffffff",
+        "list": [
+        {
+            "pagePath": "pages/index/index",
+            "text": "首页"
+        },
+        {
+            "pagePath": "pages/goods/list",
+            "text": "商品列表"
+        },
+        {
+            "pagePath": "pages/categories/index",
+            "text": "分类"
+        },
+        {
+            "pagePath": "pages/cart/index",
+            "text": "购物车"
+        },
+        {
+            "pagePath": "pages/user/index",
+            "text": "用户中心"
+        }]
+    },
+    "globalStyle":
+    {
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "",
+        "navigationBarBackgroundColor": "#F8F8F8",
+        "backgroundColor": "#F8F8F8"
+    }
+}

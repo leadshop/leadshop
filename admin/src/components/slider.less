@@ -1,0 +1,24 @@
+.slider {
+    position: relative;
+    width: 100%;
+
+    /deep/ .el-slider {
+        position: absolute;
+            top: -5px;
+        width: 167px;
+
+        .el-slider__button {
+            width: 12px;
+            height: 12px;
+        }
+    }
+
+    .slider-input {
+        position: absolute;
+        display: inline-block;
+        margin-left: 17px;
+        width: 64px;
+        right: 0;
+        top: 0;
+    }
+}

@@ -1,0 +1,58 @@
+
+.le-popconfirm {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+/deep/.el-dialog {
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #999;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 16px;
+    background-clip: padding-box;
+    outline: 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+
+    .el-dialog__headerbtn {
+        right: -32px;
+        top: -4px;
+
+        .el-dialog__close {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 800;
+        }
+    }
+
+    .el-dialog__header {
+        text-align: center;
+        padding: 40px 0 22px 0;
+
+        .el-dialog__title {
+            font-size: 18px;
+            font-weight: 400;
+            color: #000000;
+            line-height: 20px;
+            opacity: 0.85;
+        }
+    }
+
+
+
+    .el-dialog__footer {
+        text-align: center;
+    }
+
+
+
+    .el-dialog__body {
+        padding: 0;
+        margin: 0;
+    }
+
+}
+
+.le-popconfirm+.le-popconfirm {
+    margin-left: 8px;
+}

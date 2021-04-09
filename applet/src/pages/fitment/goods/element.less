@@ -1,0 +1,217 @@
+.goods {
+    overflow: hidden;
+
+    .clear {
+        clear: both;
+    }
+
+    .chamfer {
+        .goods-item {
+            border-radius: 16px;
+        }
+    }
+
+    .white {}
+
+    .card {
+        .goods-item {
+            box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.05);
+        }
+    }
+
+    .stroke {
+        .goods-item {
+            border: 1px solid rgba(50, 50, 51, .1);
+        }
+    }
+
+    .lucency {
+        .goods-item {
+            background-color: transparent;
+        }
+    }
+
+    .goods-item {
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        background: #FFFFFF;
+        overflow: hidden;
+
+        .goods-item-photo {
+            position: relative;
+
+            .goods-item-image {
+                position: relative;
+                max-height: 500px;
+                overflow: hidden;
+                padding-top: 50%;
+            }
+
+            .goods-item-cover {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background-repeat: no-repeat;
+                background-position: 50%;
+                background: #F3F5F7;
+                background-size: cover;
+            }
+        }
+
+        .goods-item-cover {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-repeat: no-repeat;
+            background-position: 50%;
+            background-size: cover;
+        }
+
+        .goods-item-detail {
+            margin: 20px 20px 10px 20px;
+            position: relative;
+
+            .goods-item-title {
+                font-size: 28rpx;
+                font-weight: 400;
+                color: #353535;
+                line-height: 1.4em;
+                min-height: 2.8em;
+                margin-bottom: 10px;
+                text-overflow: -o-ellipsis-lastline;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                line-clamp: 2;
+                -webkit-box-orient: vertical;
+            }
+
+            .goods-item-info {
+                position: relative;
+                width: 100%;
+                line-height: 2em;
+                display: flex;
+                font-weight: 400;
+                justify-content: space-between
+            }
+
+            .goods-item-price {
+                display: inline-block;
+                font-weight: 400;
+
+                .goods-item-price__tag {
+                    font-size: 24rpx;
+                    padding-right: 4rpx;
+
+                }
+
+                .goods-item-price__val {
+                    font-size: 32px;
+                }
+            }
+
+            .goods-item-button {
+                display: inline-block;
+
+                .le-icon {
+                    vertical-align: 0;
+                }
+
+                .iconfont {
+                    font-size: 36rpx;
+                }
+            }
+        }
+    }
+
+    .larger {
+        .goods-item-photo {
+            .goods-item-image {
+                // padding-top: 25%;
+                // padding-bottom: 25%;
+                height: 25%;
+            }
+
+        }
+    }
+
+
+    .small,
+    .list,
+    .swipe {
+        .goods-item-photo {
+            .goods-item-image {
+                padding-top: 100%;
+            }
+
+        }
+    }
+
+
+    .small {
+        .goods-wrapper {
+            float: left;
+            width: 50%;
+        }
+
+
+    }
+
+    .list {
+        .goods-item-photo {
+            float: left;
+            width: 240rpx;
+            height: 240rpx;
+            min-height: auto;
+            margin-right: 20px;
+        }
+
+        .goods-item-detail {
+            height: 240rpx;
+            margin-left: 240rpx;
+            box-sizing: border-box;
+            margin: 0 30px 0 0;
+            overflow: hidden;
+
+            .goods-item-title {
+                font-weight: 400;
+                margin: 28px 0 0;
+            }
+
+            .goods-item-info {
+                position: absolute;
+                left: 0;
+                bottom: 10px;
+            }
+        }
+    }
+
+    .swipe {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        margin-bottom: -20px;
+        padding-bottom: 20px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+
+        .goods-wrapper {
+            flex: 0 0 30%;
+            float: none;
+            width: 30%;
+        }
+
+    }
+
+}

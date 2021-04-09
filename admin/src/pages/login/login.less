@@ -1,0 +1,70 @@
+.le-login {
+    position: relative;
+    min-height: 100vh;
+    background-color: #F9FAFB;
+    overflow: hidden;
+}
+.le-login__content {
+    width: 952px;
+    height: 480px;
+    margin: 210px auto 0 auto;
+    position: relative;
+    background-image: url("./image/login-background.png");
+}
+.le-content__body {
+    width: 420px;
+    height: 520px;
+    background: #FFFFFF;
+    box-shadow: 0 0 16px 0 rgba(33, 34, 36, 0.06);
+    border-radius: 16px;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    .le-body__icon {
+        width: 260px;
+        height: 64px;
+        margin: 72px auto 40px auto;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-image: url("./image/logo.png");
+    }
+}
+.le-body__form {
+    padding: 0 56px;
+    .le-form__item {
+        border-bottom: 1px solid #DCDFE6;
+        margin-bottom: 32px;
+    }
+    .le-label {
+        height: 28px;
+        line-height: 28px;
+        background: #FFFFFF;
+        font-size: 14px;
+        font-family: Microsoft YaHei;
+        font-weight: 400;
+        color: #8C8C8C;
+    }
+    .le-value {
+        height: 32px;
+        background: #FFFFFF;
+        input {
+            border: none;
+            padding: 5px;
+        }
+    }
+    .le-login-submit, .le-login-submit:hover, .le-login-submit:active, .le-login-submit:focus {
+        width: 308px;
+        height: 40px;
+        background: #623CEB;
+        border-radius: 4px;
+        font-size: 16px;
+        font-family: Microsoft YaHei;
+        font-weight: 400;
+        color: #FFFFFF;
+    }
+    .le-login-submit[disabled], .le-login-submit[disabled]:hover {
+        background: #F3F5F7;
+        color: #BFBFBF;
+    }
+}

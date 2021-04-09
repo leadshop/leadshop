@@ -1,0 +1,37 @@
+.video {
+    width: 375px;
+    height: 215px;
+
+    position: relative;
+
+    .video-icon {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -35px;
+        margin-top: -45px;
+        height: 70px;
+        width: 70px;
+        line-height: 70px;
+        z-index: 2;
+        opacity: 0.5;
+        i {
+            font-size: 70px;
+        }
+    }
+
+    .video-cover {
+        width: 100%;
+        height: 215px;
+        overflow: hidden;
+        /*图片地址*/
+        background-origin: content;
+        /*从content区域开始显示背景*/
+        background-position: 50% 50%;
+        /*图片上下左右居中*/
+        background-size: cover;
+        /*保持图像本身的宽高比例，将图片缩放到宽度或高度正好适应定义背景的区域*/
+        background-repeat: no-repeat;
+        /*图像不重复显示*/
+    }
+}

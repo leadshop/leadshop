@@ -1,0 +1,33 @@
+{
+    "adminEmail": "admin@example.com",
+    "senderEmail": "noreply@example.com",
+    "senderName": "Example.com mailer",
+    "serialNumber": "F00BCF-50E396-C5AC18-737ABD-426F79-1586RR",
+    "username": "admin",
+    "regtime": "2020-11-06",
+    "siteid": "",
+    "admin": "qm73x0exg9nwb1hogg",
+    "accessWhitelist": [
+        "leadmall/api/install/index",
+        "leadmall/api/install/create",
+        "leadmall/api/login/create",
+        "leadmall/app/fitment/create",
+        "leadmall/app/qrcode/create",
+        "leadmall/app/login/create",
+        "leadmall/app/sms/create",
+        "leadmall/app/pay/create",
+        "leadmall/app/setting/index",
+        "leadmall/app/pages/index",
+        "leadmall/app/pages/view",
+        "leadmall/app/search/create",
+        "leadmall/app/goods/index",
+        "leadmall/app/goods/view",
+        "leadmall/app/tabcount/create",
+        "leadmall/app/evaluate/index",
+        "leadmall/app/group/index",
+        "leadmall/app/login/index",
+        "leadmall/app/login/view",
+        "leadmall/app/jssdk/index",
+        "leadmall/api/demo/index"
+    ]
+}

@@ -1,0 +1,104 @@
+.navigation {
+    background-color: #FFFFFF;
+    position: relative;
+
+    ::-webkit-scrollbar {
+        display: none
+    }
+
+
+    .one {
+        white-space: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 0 32px;
+
+    }
+
+    .navigation-indicator {
+        position: absolute;
+        width: 100%;
+        height: 20px;
+        bottom: 10px;
+
+    }
+
+    .navigation-image-item {
+        display: inline-block;
+        vertical-align: middle;
+        margin-top: 16px;
+        margin-bottom: 10px;
+
+        .navigation-image-item__cover {
+            width: 100px;
+            height: 100px;
+            background-position: 50%;
+            background-size: cover;
+            display: block;
+            margin: 0 auto;
+            border: 0;
+        }
+
+        .navigation-image-item__title {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 100%;
+            font-size: 24px;
+            line-height: 40rpx;
+            text-align: center;
+            overflow: hidden;
+            /*超出部分隐藏*/
+            white-space: nowrap;
+            /*不换行*/
+            text-overflow: ellipsis;
+            /*超出部分文字以...显示*/
+
+        }
+    }
+
+    .navigation-text-item {
+        display: inline-block;
+        padding: 16rpx 0;
+        color: #333;
+        width: 25%;
+        text-decoration: none;
+        box-sizing: border-box;
+        // background-color: rgb(255, 255, 255);
+
+        .navigation-text-item__title {
+            display: block;
+            width: 100%;
+            position: relative;
+            height: 30px;
+            font-size: 24px;
+            line-height: 30rpx;
+            text-align: center;
+            overflow: hidden;
+            box-sizing: border-box;
+            /*超出部分隐藏*/
+            white-space: nowrap;
+            /*不换行*/
+            text-overflow: ellipsis;
+            /*超出部分文字以...显示*/
+            padding: 0 20rpx;
+            border-right: 1px solid #eee;
+        }
+    }
+
+    .one {
+        .navigation-text-item:last-child {
+            .navigation-text-item__title {
+                border-right: 0px
+            }
+        }
+    }
+
+    .two {
+        .navigation-text-item:last-child {
+            .navigation-text-item__title {
+                border-right: 0px
+            }
+        }
+    }
+}

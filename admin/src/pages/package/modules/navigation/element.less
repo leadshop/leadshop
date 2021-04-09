@@ -1,0 +1,104 @@
+.navigation {
+    background-color: #FFFFFF;
+
+
+    ::-webkit-scrollbar {
+        display: none
+    }
+
+
+    .one {
+        white-space: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 0 15px;
+
+    }
+
+    .navigation-indicator {
+        width: 100%;
+        height: 10px;
+
+    }
+
+    .navigation-image-item {
+        display: inline-block;
+        vertical-align: middle;
+        margin-top: 8px;
+        margin-bottom: 5px;
+
+        .navigation-image-item__cover {
+            width: 50px;
+            height: 50px;
+            background-position: 50%;
+            background-size: cover;
+            display: block;
+            margin: 0 auto;
+            border: 0;
+        }
+
+        .navigation-image-item__title {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 100%;
+            font-size: 12px;
+            line-height: 2.4em;
+            text-align: center;
+            overflow: hidden;
+            /*超出部分隐藏*/
+            white-space: nowrap;
+            /*不换行*/
+            text-overflow: ellipsis;
+            /*超出部分文字以...显示*/
+        }
+    }
+
+    .navigation-text-item {
+        display: inline-block;
+        padding: 8px 0;
+        color: #333;
+        width: 25%;
+        text-decoration: none;
+        // background-color: rgb(255, 255, 255);
+
+        .navigation-text-item__title {
+            display: inline-block;
+            width: 100%;
+            position: relative;
+            height: 12px;
+            font-size: 12px;
+            line-height: 12px;
+            text-align: center;
+            overflow: hidden;
+            /*超出部分隐藏*/
+            white-space: nowrap;
+            /*不换行*/
+            text-overflow: ellipsis;
+            /*超出部分文字以...显示*/
+            padding: 0 10px;
+
+            &:after {
+                position: absolute;
+                top: 0;
+                left: 0;
+                box-sizing: border-box;
+                width: 200%;
+                height: 200%;
+                -webkit-transform: scale(.5);
+                transform: scale(.5);
+                -webkit-transform-origin: 0 0;
+                transform-origin: 0 0;
+                content: "";
+                pointer-events: none;
+                border-right: 1px solid #eee;
+            }
+        }
+    }
+
+    .navigation-text-item:last-child {
+        .navigation-text-item__title:after {
+            border-right: 0px
+        }
+    }
+}

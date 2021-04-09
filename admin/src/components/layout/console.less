@@ -1,0 +1,319 @@
+.noselect {
+
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+
+    -khtml-user-select: none;
+    /* Konqueror */
+
+    -moz-user-select: none;
+    /* Firefox */
+
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+
+    user-select: none;
+    /* Non-prefixed version, currently*/
+
+
+}
+
+.layout {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+
+
+
+    .el-container {
+        height: 100%;
+        width: 100%;
+
+    }
+
+    .layout-attribute {
+        width: 400px;
+        background: #FFFFFF;
+        height: 100%;
+        overflow-x: hidden;
+
+        /deep/ .el-scrollbar__wrap {
+            overflow-x: hidden;
+        }
+    }
+
+
+
+    .el-header {
+        .noselect;
+        position: relative;
+        background: #FFFFFF;
+        border: 1px solid #DCDFE6;
+
+
+
+        .layout-logo {
+            position: absolute;
+            left: 32px;
+            top: 14px;
+
+            img {
+                width: 33px;
+                height: 36px;
+            }
+        }
+
+
+        .layout-back {
+            position: absolute;
+            left: 78px;
+            top: 0;
+            height: 63px;
+            color: rgba(0, 0, 0, .85);
+            font-weight: 400;
+            cursor: pointer;
+
+            ul {
+                list-style-type: none;
+                height: 63px;
+                padding: 0;
+                margin: 0;
+
+                li {
+                    float: left;
+                    padding: 0 8px;
+                    line-height: 63px;
+
+                    span,
+                    a {
+                        i {
+                            padding: 0 9px;
+                        }
+
+                        font-size: 14px;
+
+                    }
+
+                    .le-icon-editor {
+                        color: rgba(187, 191, 200, 1);
+                    }
+                }
+            }
+        }
+
+        .layout-event {
+            position: absolute;
+            right: 40px;
+            height: 63px;
+            line-height: 63px;
+
+            .layout-event-qrcode {
+
+                text-align: center;
+
+                img {
+                    margin: 10px;
+                    width: 100px;
+                    height: 100px;
+                }
+
+                p {
+                    font-size: 12px;
+                    font-weight: 400;
+                    color: #000000;
+                    opacity: 0.45;
+                }
+            }
+
+            .el-button--text {
+                font-weight: 400;
+                color: rgba(0, 0, 0, .85);
+            }
+
+            .el-button+.el-button {
+                margin-left: 32px;
+            }
+
+
+
+
+        }
+    }
+
+    .el-main {
+        background: #f3f5f7;
+        display: flex;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+
+        .layout-body {
+            flex: 1;
+            overflow-x: hidden;
+
+            /deep/ .el-scrollbar__wrap {
+                overflow-x: hidden;
+            }
+
+            .layout-phone {
+                width: 375px;
+                min-height: 765px;
+                margin: 20px auto;
+                background: RGBA(245, 245, 245, 1);
+                box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.05);
+
+                .layout-phone-header {
+                    .noselect;
+                    height: 64px;
+                    width: 100%;
+                    background: url('https://cdn2.weimob.com/saas/@assets/saas-fe-retail-web-stc/retail2/images/storeDesign/ad_moible_top.png') no-repeat;
+                    background-size: cover;
+                    position: relative;
+                }
+
+                .layout-phone-header-active {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    border: 2px solid #623CEB;
+                    left: -2px;
+                    top: -2px;
+                    z-index: 2;
+                }
+
+                .layout-phone-title {
+                    height: 40px;
+                    width: 100%;
+                    line-height: 40px;
+                    position: absolute;
+                    top: 22px;
+                    left: 50%;
+                    -webkit-transform: translate(-50%);
+                    transform: translate(-50%);
+                    text-align: center;
+                    font-size: 15px;
+                    font-weight: 600;
+                    color: #35323b;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+
+                .layout-phone-body {
+                    min-height: 700px;
+                    position: relative;
+                }
+            }
+        }
+
+        .layout-tool {
+            width: 320px;
+            background: #FFFFFF;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            overflow-x: hidden;
+
+
+            /deep/ .el-collapse {
+                border-top: 0;
+                border-bottom: 0;
+                padding: 24px 20px 24px 28px;
+
+                .el-collapse-item {
+                    .el-collapse-item__header {
+                        height: 30px;
+                        line-height: 30px;
+                        font-weight: bold;
+                        color: rgba(0, 0, 0, 0.85);
+                        line-height: 12px;
+                        border-bottom: 0px solid #EBEEF5;
+
+                        .le-icon {
+                            font-size: 12px;
+                            color: rgba(187, 191, 200, 1);
+                            transform: rotate(180deg);
+                        }
+
+
+                        span {
+                            padding-left: 6px;
+                        }
+
+                        i.el-collapse-item__arrow {
+                            display: none !important;
+                            width: 0;
+                            height: 0;
+                        }
+
+                        i.el-icon-arrow-right:before {
+                            content: "";
+                        }
+                    }
+
+                    .is-active {
+                        .le-icon {
+                            font-size: 12px;
+                            color: rgba(187, 191, 200, 1);
+                            transform: rotate(0deg);
+                        }
+                    }
+
+
+                    .el-collapse-item__wrap {
+                        padding: 4px;
+                        border-bottom: 0px solid #EBEEF5;
+                    }
+
+                    .fm-collapse-tool {
+                        list-style-type: none;
+                        padding: 0;
+                        margin: 0;
+
+                        li {
+                            position: relative;
+                            float: left;
+                            width: 87px;
+                            height: 92px;
+                            background: #FFFFFF;
+                            margin-bottom: 8px;
+                            z-index: 1px;
+                            //border: 1px solid #EBEEF5;
+                            text-align: center;
+                            cursor: pointer;
+
+                            .le-icon {
+                                font-size: 32px;
+                                color: rgba(98, 60, 235, 1);
+
+                            }
+
+
+                            span {
+                                display: block;
+                                width: 100%;
+                                text-align: center;
+                                color: rgba(0, 0, 0, .65);
+                                font-size: 12px;
+                            }
+
+                            &:hover {
+                                box-shadow: 0px 0px 10px 0px rgba(98, 60, 235, 0.1);
+                                border-radius: 8px;
+                                z-index: 10;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+    }
+
+}
