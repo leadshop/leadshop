@@ -1,0 +1,482 @@
+[
+    {
+        "name": "顺丰速运",
+        "coding": "SF"
+    },
+    {
+        "name": "百世快递",
+        "coding": "HTKY"
+    },
+    {
+        "name": "中通快递",
+        "coding": "ZTO"
+    },
+    {
+        "name": "申通快递",
+        "coding": "STO"
+    },
+    {
+        "name": "圆通速递",
+        "coding": "YTO"
+    },
+    {
+        "name": "韵达速递",
+        "coding": "YD"
+    },
+    {
+        "name": "龙邦快递",
+        "coding": "LB"
+    },
+    {
+        "name": "联昊通速递",
+        "coding": "LHT"
+    },
+    {
+        "name": "民航快递",
+        "coding": "MHKD"
+    },
+    {
+        "name": "邮政快递包裹",
+        "coding": "YZPY"
+    },
+    {
+        "name": "EMS",
+        "coding": "EMS"
+    },
+    {
+        "name": "天天快递",
+        "coding": "HHTT"
+    },
+    {
+        "name": "JD",
+        "coding": "JD"
+    },
+    {
+        "name": "明亮物流",
+        "coding": "MLWL"
+    },
+    {
+        "name": "全峰快递",
+        "coding": "QFKD"
+    },
+    {
+        "name": "国通快递",
+        "coding": "GTO"
+    },
+    {
+        "name": "优速快递",
+        "coding": "UC"
+    },
+    {
+        "name": "德邦",
+        "coding": "DBL"
+    },
+    {
+        "name": "快捷快递",
+        "coding": "FAST"
+    },
+    {
+        "name": "宅急送",
+        "coding": "ZJS"
+    },
+    {
+        "name": "安捷快递",
+        "coding": "AJ"
+    },
+    {
+        "name": "能达速递",
+        "coding": "NEDA"
+    },
+    {
+        "name": "平安达腾飞快递",
+        "coding": "PADTF"
+    },
+    {
+        "name": "泛捷快递",
+        "coding": "PANEX"
+    },
+    {
+        "name": "PCA Express",
+        "coding": "PCA"
+    },
+    {
+        "name": "全晨快递",
+        "coding": "QCKD"
+    },
+    {
+        "name": "全日通快递",
+        "coding": "QRT"
+    },
+    {
+        "name": "义达国际物流",
+        "coding": "YDH"
+    },
+    {
+        "name": "越丰物流",
+        "coding": "YFEX"
+    },
+    {
+        "name": "原飞航物流",
+        "coding": "YFHEX"
+    },
+    {
+        "name": "亚风快递",
+        "coding": "YFSD"
+    },
+    {
+        "name": "运通快递",
+        "coding": "YTKD"
+    },
+    {
+        "name": "亿翔快递",
+        "coding": "YXKD"
+    },
+    {
+        "name": "增益快递",
+        "coding": "ZENY"
+    },
+    {
+        "name": "汇强快递",
+        "coding": "ZHQKD"
+    },
+    {
+        "name": "众通快递",
+        "coding": "ZTE"
+    },
+    {
+        "name": "中铁快运",
+        "coding": "ZTKY"
+    },
+    {
+        "name": "中铁物流",
+        "coding": "ZTWL"
+    },
+    {
+        "name": "中邮物流",
+        "coding": "ZYWL"
+    },
+    {
+        "name": "亚马逊物流",
+        "coding": "AMAZON"
+    },
+    {
+        "name": "安能快运",
+        "coding": "ANE"
+    },
+    {
+        "name": "安信达快递",
+        "coding": "AXD"
+    },
+    {
+        "name": "澳邮专线",
+        "coding": "AYCA"
+    },
+    {
+        "name": "百福东方",
+        "coding": "BFDF"
+    },
+    {
+        "name": "北青小红帽",
+        "coding": "BQXHM"
+    },
+    {
+        "name": "百世快运",
+        "coding": "BTWL"
+    },
+    {
+        "name": "CCES快递",
+        "coding": "CCES"
+    },
+    {
+        "name": "城市100",
+        "coding": "CITY100"
+    },
+    {
+        "name": "城际快递",
+        "coding": "CJKD"
+    },
+    {
+        "name": "CNPEX中邮快递",
+        "coding": "CNPEX"
+    },
+    {
+        "name": "COE东方快递",
+        "coding": "COE"
+    },
+    {
+        "name": "长沙创一",
+        "coding": "CSCY"
+    },
+    {
+        "name": "成都善途速运",
+        "coding": "CDSTKY"
+    },
+    {
+        "name": "D速物流",
+        "coding": "DSWL"
+    },
+    {
+        "name": "大田物流",
+        "coding": "DTWL"
+    },
+    {
+        "name": "FEDEX联邦(国内件）",
+        "coding": "FEDEX"
+    },
+    {
+        "name": "FEDEX联邦(国际件）",
+        "coding": "FEDEX_GJ"
+    },
+    {
+        "name": "飞康达",
+        "coding": "FKD"
+    },
+    {
+        "name": "广东邮政",
+        "coding": "GDEMS"
+    },
+    {
+        "name": "共速达",
+        "coding": "GSD"
+    },
+    {
+        "name": "高铁速递",
+        "coding": "GTSD"
+    },
+    {
+        "name": "汇丰物流",
+        "coding": "HFWL"
+    },
+    {
+        "name": "恒路物流",
+        "coding": "HLWL"
+    },
+    {
+        "name": "天地华宇",
+        "coding": "HOAU"
+    },
+    {
+        "name": "鸿桥供应链",
+        "coding": "HOTSCM"
+    },
+    {
+        "name": "海派通物流公司",
+        "coding": "HPTEX"
+    },
+    {
+        "name": "华强物流",
+        "coding": "hq568"
+    },
+    {
+        "name": "华夏龙物流",
+        "coding": "HXLWL"
+    },
+    {
+        "name": "好来运快递",
+        "coding": "HYLSD"
+    },
+    {
+        "name": "京广速递",
+        "coding": "JGSD"
+    },
+    {
+        "name": "九曳供应链",
+        "coding": "JIUYE"
+    },
+    {
+        "name": "佳吉快运",
+        "coding": "JJKY"
+    },
+    {
+        "name": "嘉里物流",
+        "coding": "JLDT"
+    },
+    {
+        "name": "捷特快递",
+        "coding": "JTKD"
+    },
+    {
+        "name": "急先达",
+        "coding": "JXD"
+    },
+    {
+        "name": "晋越快递",
+        "coding": "JYKD"
+    },
+    {
+        "name": "加运美",
+        "coding": "JYM"
+    },
+    {
+        "name": "佳怡物流",
+        "coding": "JYWL"
+    },
+    {
+        "name": "跨越物流",
+        "coding": "KYSY"
+    },
+    {
+        "name": "如风达",
+        "coding": "RFD"
+    },
+    {
+        "name": "瑞丰速递",
+        "coding": "RFEX"
+    },
+    {
+        "name": "赛澳递",
+        "coding": "SAD"
+    },
+    {
+        "name": "圣安物流",
+        "coding": "SAWL"
+    },
+    {
+        "name": "盛邦物流",
+        "coding": "SBWL"
+    },
+    {
+        "name": "上大物流",
+        "coding": "SDWL"
+    },
+    {
+        "name": "盛丰物流",
+        "coding": "SFWL"
+    },
+    {
+        "name": "盛辉物流",
+        "coding": "SHWL"
+    },
+    {
+        "name": "速通物流",
+        "coding": "ST"
+    },
+    {
+        "name": "速腾快递",
+        "coding": "STWL"
+    },
+    {
+        "name": "速必达物流",
+        "coding": "SUBIDA"
+    },
+    {
+        "name": "速尔快递",
+        "coding": "SURE"
+    },
+    {
+        "name": "全一快递",
+        "coding": "UAPEX"
+    },
+    {
+        "name": "UEQ Express",
+        "coding": "UEQ"
+    },
+    {
+        "name": "万家物流",
+        "coding": "WJWL"
+    },
+    {
+        "name": "万象物流",
+        "coding": "WXWL"
+    },
+    {
+        "name": "新邦物流",
+        "coding": "XBWL"
+    },
+    {
+        "name": "信丰物流",
+        "coding": "XFEX"
+    },
+    {
+        "name": "希优特",
+        "coding": "XYT"
+    },
+    {
+        "name": "新杰物流",
+        "coding": "XJ"
+    },
+    {
+        "name": "源安达快递",
+        "coding": "YADEX"
+    },
+    {
+        "name": "远成物流",
+        "coding": "YCWL"
+    },
+    {
+        "name": "安能物流",
+        "coding": "ANE"
+    },
+    {
+        "name": "程光",
+        "coding": "CG"
+    },
+    {
+        "name": "富腾达",
+        "coding": "FTD"
+    },
+    {
+        "name": "中通快运",
+        "coding": "ZTO56"
+    },
+    {
+        "name": "品骏快递",
+        "coding": "PJKD"
+    },
+    {
+        "name": "万家康",
+        "coding": "WJK"
+    },
+    {
+        "name": "速派快递",
+        "coding": "FASTGO"
+    },
+    {
+        "name": "EWE",
+        "coding": "EWE"
+    },
+    {
+        "name": "德邦快运",
+        "coding": "DBL"
+    },
+    {
+        "name": "百世快运",
+        "coding": "BTWL"
+    },
+    {
+        "name": "佳吉快运",
+        "coding": "JJKY"
+    },
+    {
+        "name": "跨越速运",
+        "coding": "KYSY"
+    },
+    {
+        "name": "顺心捷达",
+        "coding": "SXJD"
+    },
+    {
+        "name": "韵达快运",
+        "coding": "YD"
+    },
+    {
+        "name": "邮政国内标快",
+        "coding": "YZPY"
+    },
+    {
+        "name": "壹米滴答",
+        "coding": "YIMIDIDA"
+    },
+    {
+        "name": "易达通",
+        "coding": "YDT"
+    },
+    {
+        "name": "极兔速递",
+        "coding": "JITU"
+    },
+    {
+        "name": "众邮快递",
+        "coding": "ZYKD"
+    }
+]

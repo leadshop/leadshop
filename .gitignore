@@ -5,11 +5,14 @@ node_modules
 /admin/node_modules
 /admin/public
 
-/server/runtime
-/server/web/upload
-/server/system/wechat/Cache
+/runtime/cache
+/runtime/debug
+/runtime/logs
+/web/upload
+/system/wechat/Cache
 
 error_log.txt
+market.json
 
 # local env files
 .env.local
@@ -29,4 +32,4 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
-/server/install.lock
+/install.lock

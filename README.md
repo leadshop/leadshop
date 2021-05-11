@@ -1,12 +1,24 @@
-## 运行环境
+## 下期更新计划
+ **[点击查看本周更新计划](https://forum.leadshop.vip/thread/170)** 
 
-Linux+Nginx+PHP7.4+MySQL(5.6|5.7)
+## 更新历史
+**[点击查看V1.1.5更新内容](https://forum.leadshop.vip/thread/170)** 
+
+**[点击查看V1.1.4更新内容](https://forum.leadshop.vip/thread/99)** 
+ 
+**[点击查看V1.0.1更新内容](https://forum.leadshop.vip/thread/57)** 
+
+  QQ群：849894135
+<br/>
+ 微信交流群
+![展示图](https://leadshop-1302407761.cos.ap-shanghai.myqcloud.com/public/attachments/2021/05/06/LEVUJ05OQTI8nMZBu4PBz673UUedpuOm6NLVl4UQ.png)
 
 ## 项目介绍
 Leadshop是一款提供持续更新迭代服务的免费商城系统，旨在打造极致的用户体验！
 
 Leadshop由浙江禾成云计算有限公司研发，主要面向中小型企业，助力搭建电商平台，并提供专业的技术支持。免费提供长期更新服务，应用涉及可视化装修、促销转化、裂变分销、用户精细化管理、数据分析等多个维度，追求极致体验，全面赋能商家，为商家创造价值。
 
+**Leadshop无偿供大家使用，您的star是我们前进的动力** 
 
 ## 主要特性
 Leadshop 开源系统，基于Yii2开发，支持composer，优化核心，减少依赖，基于全新的架构思想和命名空间
@@ -26,6 +38,66 @@ Leadshop 开源系统，基于Yii2开发，支持composer，优化核心，减�
 * 可视化DIY店铺装修，方便、快捷、直观，可以随心所欲装扮自己的店铺
 * 高效的笛卡尔乘积运算，8000条规格秒加载
 * 拟态Windows文件夹的素材管理结构，操作更熟悉随心
+
+## 页面展示
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/20210510/1.png)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/20210510/2.png)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/20210510/3.png)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/20210510/4.png)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/20210510/5.png)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/20210510/6.png)
+
+<br/>
+
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/20210426/1.png)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/20210426/2.png)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/20210426/3.png)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/20210426/4.png)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/20210426/5.png)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/20210426/6.png)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/20210426/7.png)
+
+<br/>
+
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/20210419/1.png)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/20210419/2.png)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/20210419/3.png)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/20210419/4.png)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/20210419/6.png)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/20210419/7.png)
+
+<br/>
+
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/2.png)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/3.png)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/4.png)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/5.png)
+![展示图](/readme/images/合成.mp4)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/6.png)
+![展示图](/readme/images/合成2.mp4)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/7.png)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/8.png)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/9.png)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/10.png)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/11.png)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/12.png)
+![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/13.png)
+
+# Leadshop微商城
+
+## 论坛交流
+地址:https://forum.leadshop.vip/
+
+## 体验后台
+地址:https://demo.leadshop.vip
+
+账号:18888888888
+
+密码:123456
+
+## 运行环境
+
+Linux+Nginx+PHP7.4+MySQL(5.6|5.7)
 
 
 ## 开源无加密
@@ -48,53 +120,42 @@ Leadshop 开源系统，基于Yii2开发，支持composer，优化核心，减�
 ## 数据表格导出
 采用高性能的 js-xlsx数据导出，易于扩展，兼容性强。
 
-
 接口文档：http://www.leadshop.vip/api.html
-
-## 页面展示
-![展示图](/readme/images/1.png)
-![展示图](/readme/images/2.png)
-![展示图](/readme/images/3.png)
-![展示图](/readme/images/4.png)
-![展示图](/readme/images/5.png)
-![展示图](/readme/images/合成.mp4)
-![展示图](/readme/images/6.png)
-![展示图](/readme/images/合成2.mp4)
-![展示图](/readme/images/7.png)
-![展示图](/readme/images/8.png)
-![展示图](/readme/images/9.png)
-![展示图](/readme/images/10.png)
-![展示图](/readme/images/11.png)
-![展示图](/readme/images/12.png)
-![展示图](/readme/images/13.png)
-
-# Leadshop微商城
-
-## 论坛交流
-地址:https://forum.leadshop.vip/
-
-## 体验后台
-地址:https://demo.leadshop.vip
-
-账号:18888888888
-
-密码:123456
-
-
 
 ## 安装
 
 ### 一键安装
-上传你的代码，执行目录为/server/web在浏览器中输入你的域名或IP
+1.上传你的代码
+
+2.项目目录设置755权限
+
+3.设置伪静态规则(nginx 推荐使用)
+
+```
+location / {
+    try_files $uri $uri/ /index.php$is_args$args;
+}
+```
+
+注:如果使用Apache环境 需要在.htaccess 中添加
+```
+ SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+```
+否则会导致OAuth登录模式获取不到Authorization
+
+4.设置代码执行目录为/server/web
+
+5.在浏览器中输入你的域名或IP
 
 ( 例如：www.yourdomain.com/install )，安装程序会自动执行安装。期间系统会提醒你输入数据库信息以完成安装。
 
+6.检查php禁用函数列表,symlink函数不能被禁用，否则后台页面无法访问。
 
-后台访问地址：
-域名/leadshop/panel/index
+7.后台访问地址：
+域名/index.php?r=admin
 
-公众号首页访问地址：
-域名/h5
+8.公众号首页访问地址：
+域名/index.php?r=wechat
 
 ### 重新安装
 1. 清除数据库
@@ -102,75 +163,7 @@ Leadshop 开源系统，基于Yii2开发，支持composer，优化核心，减�
 
 ## 目录说明
 ```
-├─admin                             // 后台前端项目          
-│  ├─public                       
-│  └─src                          
-│      ├─assets
-│      │  ├─icons
-│      │  └─images
-│      ├─components
-│      ├─lib
-│      │  └─function
-│      ├─mixins
-│      ├─pages
-│      │  ├─channel                        // 渠道
-│      │  ├─error
-│      │  ├─gallery
-│      │  ├─goods                          // 商品
-│      │  ├─login                          // 登入
-│      │  ├─order                          // 订单
-│      │  ├─package                        // 装修组件
-│      │  ├─pages                          // 微页面
-│      │  ├─panel                          // 首页
-│      │  ├─setup                          // 设置
-│      │  ├─store                          // 店铺
-│      │  ├─tabbar                         // 底部导航
-│      │  └─users                          // 用户
-│      ├─plugins
-│      ├─router
-│      ├─store
-│      ├─theme
-│      │  └─fonts
-│      └─utils
-├─applet                                 //小程序项目                       
-│  ├─public
-│  ├─src
-│  │  ├─colorui                          // CSS样式
-│  │  │  └─components
-│  │  ├─components
-│  │  │  ├─goods-list                   // 商品列表
-│  │  │  ├─he-html                      // 富文本
-│  │  │  │  └─node
-│  │  │  └─lime-painter
-│  │  ├─libs
-│  │  │  ├─function                    // 工具函数
-│  │  │  └─mixin
-│  │  ├─pages
-│  │  │  ├─cart                        // 购物车页
-│  │  │  ├─categories                  // 分类页
-│  │  │  ├─fitment                     // 装修组件
-│  │  │  ├─goods                       // 商品页
-│  │  │  ├─greet
-│  │  │  ├─index                       // 首页
-│  │  │  ├─order                       // 订单页
-│  │  │  ├─other                       // 其他页
-│  │  │  ├─page                        // 微页面
-│  │  │  └─user                        // 个人中心页
-│  │  ├─static                         // 静态资源
-│  │  │  ├─css
-│  │  │  ├─h5                           // H5资源
-│  │  │  ├─images
-│  │  │  └─mp-weixin                    // 小程序资源
-│  │  ├─store                           // vuex
-│  │  └─utils
-│  └─we7
-├─install                               //安装程序
-│  ├─public
-│  └─src
-│      ├─assets
-│      │  └─css
-│      └─components
-└─server                                //后台接口项目
+ 站点根目录
     ├─api                               //后台接口
     ├─app                               //客户端（微信小程序，公众号）
     ├─applet                            //打包后的微信小程序源码包
@@ -189,14 +182,13 @@ Leadshop 开源系统，基于Yii2开发，支持composer，优化核心，减�
     │  └─wechat
     ├─vendor                            //依赖
     ├─views
-    │  ├─layouts
+    │  ├─admin                          //后台编译包目录，其中index.php不可删除
+    │  ├─wechat                         //公众号编译包目录，其中index.php不可删除
     │  └─site
     └─web
         ├─assets
-        ├─h5                            //公众号编译包目录，其中index.php不可删除
-        ├─install  
-        ├─leadshop                      //后台编译包目录
         ├─static                        //静态文件
+        ├─img                           //H5端图片目录
         ├─temp
         └─upload                        //上传文件
 ```
