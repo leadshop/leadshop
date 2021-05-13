@@ -8,17 +8,20 @@ namespace system\api;
 
 use framework\common\BasicController;
 use Yii;
+use \framework\common\TokenHttpException;
 
 /**
  * 后台用户管理器
  */
-class AccountController extends BasicController {
+class AccountController extends BasicController
+{
 
     /**
      * 后台登录
      * @return [type] [description]
      */
-    public function actionLogin() {
+    public function actionLogin()
+    {
         $post = Yii::$app->request->post();
         $data = $this->modelClass::find()->where(['mobile' => $post['mobile'], 'password' => MD5($post['password'])])->one();
         if ($data) {
@@ -39,7 +42,8 @@ class AccountController extends BasicController {
      * 后台登录
      * @return [type] [description]
      */
-    public function actionLogout() {
+    public function actionLogout()
+    {
         $post = Yii::$app->request->post();
         $data = $this->modelClass::find()->where(['mobile' => $post['mobile'], 'password' => $post['password']])->one();
         if ($data) {
@@ -55,7 +59,8 @@ class AccountController extends BasicController {
      * 用户注册
      * @return [type] [description]
      */
-    public function actionRegister() {
+    public function actionRegister()
+    {
         //调用模型
         $model    = new $this->modelClass();
         $postData = Yii::$app->request->post();
@@ -75,18 +80,51 @@ class AccountController extends BasicController {
     }
 
     /**
-     * 后台登录
+     *
      * @return [type] [description]
      */
-    public function actionReset() {
-        $post = Yii::$app->request->post();
-        $data = $this->modelClass::find()->where(['mobile' => $post['mobile'], 'password' => $post['password']])->one();
-        if ($data) {
-            $token         = $this->getToken($data['id']);
-            $data['token'] = $token;
-            return $data;
+    public function actionReset()
+    {
+        //调用模型
+        $model    = new $this->modelClass();
+        $postData = Yii::$app->request->post();
+        $token    = $postData['token'] ? $postData['token'] : "";
+        $token    = Yii::$app->jwt->getParser()->parse((string) $token);
+        $data     = Yii::$app->jwt->getValidationData();
+        $AppID    = Yii::$app->params['AppID'] ? Yii::$app->params['AppID'] : '';
+        $host     = Yii::$app->request->hostInfo;
+        $origin   = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
+        $data->setIssuer($host);
+        $data->setAudience($origin);
+        $data->setId($AppID);
+        $data->setCurrentTime(time());
+        if ($token->validate($data)) {
+            $id = $token->getClaim('id');
+            if ($id) {
+                $data          = $model::findOne($id)->toArray();
+                $data['token'] = (string) $token;
+                return $data;
+            } else {
+                return null;
+            }
         } else {
-            return null;
+            if ($token->getClaim('jti') !== $AppID) {
+                throw new TokenHttpException('Leadshop应用ID验证错误', 419);
+            } else {
+                $data->setCurrentTime(time() - 26500);
+                if ($token->validate($data)) {
+                    $id = $token->getClaim('id');
+                    if ($id) {
+                        $data          = $model::findOne($id)->toArray();
+                        $data['token'] = (string) $this->getToken($id);
+                        return $data;
+                    } else {
+                        return null;
+                    }
+                } else {
+                    throw new TokenHttpException('Token validation timeout', 419);
+                }
+            }
         }
     }
 
@@ -95,7 +133,8 @@ class AccountController extends BasicController {
      * @param  string $value [description]
      * @return [type]        [description]
      */
-    public function actionMenus() {
+    public function actionMenus()
+    {
         //获取角色模型
         $rolesModel = 'app\modules\roles\models\Roles';
         //获取角色模型
@@ -142,7 +181,8 @@ class AccountController extends BasicController {
      * @param  string $value [description]
      * @return [type]        [description]
      */
-    public function actionApply() {
+    public function actionApply()
+    {
         $post = Yii::$app->request->post();
         //获取角色模型
         $rolesModel = 'app\modules\roles\models\Roles';
@@ -194,28 +234,33 @@ class AccountController extends BasicController {
 
     /**
      * 获取Token信息
+     * 超时时间:21600
      * @param  string $id [description]
      * @return [type]      [description]
      */
-    public function getToken($id = '') {
+    public function getToken($id = '')
+    {
         /** @var Jwt $jwt */
         $jwt    = Yii::$app->jwt;
         $signer = $jwt->getSigner('HS256');
         $key    = $jwt->getKey();
         $time   = time();
+        $host   = Yii::$app->request->hostInfo;
+        $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
         // Adoption for lcobucci/jwt ^4.0 version
         $token = $jwt->getBuilder()
-            ->issuedBy('http://www.heshop.com') // Configures the issuer (iss claim)
-            ->permittedFor('http://mail.heshop.com') // Configures the audience (aud claim)
-            ->identifiedBy('jub4q3yrgt2', true) // Configures the id (jti claim), replicating as a header item
+            ->issuedBy($host) // Configures the issuer (iss claim)
+            ->permittedFor($origin) // Configures the audience (aud claim)
+            ->identifiedBy(Yii::$app->params['AppID'] ? Yii::$app->params['AppID'] : '', true) // Configures the id (jti claim), replicating as a header item
             ->issuedAt($time) // Configures the time that the token was issue (iat claim)
-            ->expiresAt($time + 3600) // Configures the expiration time of the token (exp claim)
+            ->expiresAt($time + 21600) // Configures the expiration time of the token (exp claim)
             ->withClaim('id', $id) // Configures a new claim, called "id"
             ->getToken($signer, $key); // Retrieves the generated token
         return (string) $token;
     }
 
-    public function changePwd() {
+    public function changePwd()
+    {
         $pass     = Yii::$app->request->post('old_password');
         $newPass1 = Yii::$app->request->post('new_password1');
         $newPass2 = Yii::$app->request->post('new_password2');

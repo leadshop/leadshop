@@ -14,7 +14,9 @@ use sizeg\jwt\Jwt;
 use users\models\LoginUserInfo;
 use users\models\Oauth;
 use users\models\User;
+use Yii;
 use yii\helpers\ArrayHelper;
+use \framework\common\TokenHttpException;
 
 /**
  * Class LoginController
@@ -22,6 +24,8 @@ use yii\helpers\ArrayHelper;
  */
 abstract class LoginController extends BasicController
 {
+    public $modelClass = 'users\models\Oauth';
+
     /**
      * @return LoginUserInfo
      */
@@ -31,7 +35,7 @@ abstract class LoginController extends BasicController
     {
         $t        = \Yii::$app->db->beginTransaction();
         $userInfo = $this->getUserInfo();
-        $user = User::find()->alias('u')->joinWith(['oauth as o'])->where([
+        $user     = User::find()->alias('u')->joinWith(['oauth as o'])->where([
             'u.AppID'      => \Yii::$app->params['AppID'],
             'u.is_deleted' => 0,
             'o.oauthID'    => $userInfo->openId,
@@ -67,6 +71,55 @@ abstract class LoginController extends BasicController
         return $res;
     }
 
+    /**
+     * 重置
+     * @return [type] [description]
+     */
+    public function actionReset()
+    {
+        //调用模型
+        $model    = new $this->modelClass();
+        $postData = Yii::$app->request->post();
+        $token    = $postData['token'] ? $postData['token'] : "";
+        $token    = Yii::$app->jwt->getParser()->parse((string) $token);
+        $data     = Yii::$app->jwt->getValidationData();
+        $AppID    = Yii::$app->params['AppID'] ? Yii::$app->params['AppID'] : '';
+        $host     = Yii::$app->request->hostInfo;
+        $origin   = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
+        $data->setIssuer($host);
+        $data->setAudience($origin);
+        $data->setId($AppID);
+        $data->setCurrentTime(time());
+        if ($token->validate($data)) {
+            $id = $token->getClaim('id');
+            if ($id) {
+                $data          = $model::findOne($id)->toArray();
+                $data['token'] = (string) $token;
+                return $data;
+            } else {
+                return null;
+            }
+        } else {
+            if ($token->getClaim('jti') !== $AppID) {
+                throw new TokenHttpException('Leadshop应用ID验证错误', 419);
+            } else {
+                $data->setCurrentTime(time() - 30);
+                if ($token->validate($data)) {
+                    $id = $token->getClaim('id');
+                    if ($id) {
+                        $data          = $model::findOne($id)->toArray();
+                        $data['token'] = (string) $this->getToken($id);
+                        return $data;
+                    } else {
+                        return null;
+                    }
+                } else {
+                    throw new TokenHttpException('Token validation timeout', 419);
+                }
+            }
+        }
+    }
+
     protected function getAppId()
     {
         if (!isset(\Yii::$app->params['AppType']) || empty(\Yii::$app->params['AppType'])) {
@@ -86,25 +139,29 @@ abstract class LoginController extends BasicController
 
     /**
      * 获取Token信息
+     * 超时时间:1036800
      * @param  string $id [description]
      * @return [type]      [description]
      */
     public function getToken($id = '')
     {
         /** @var Jwt $jwt */
-        $jwt    = \Yii::$app->jwt;
+        $jwt    = Yii::$app->jwt;
         $signer = $jwt->getSigner('HS256');
         $key    = $jwt->getKey();
         $time   = time();
+        $host   = Yii::$app->request->hostInfo;
+        $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
         // Adoption for lcobucci/jwt ^4.0 version
         $token = $jwt->getBuilder()
-            ->issuedBy('http://www.heshop.com') // Configures the issuer (iss claim)
-            ->permittedFor('http://mail.heshop.com') // Configures the audience (aud claim)
-            ->identifiedBy('jub4q3yrgto', true) // Configures the id (jti claim), replicating as a header item
+            ->issuedBy($host) // Configures the issuer (iss claim)
+            ->permittedFor($origin) // Configures the audience (aud claim)
+            ->identifiedBy(Yii::$app->params['AppID'] ? Yii::$app->params['AppID'] : '', true) // Configures the id (jti claim), replicating as a header item
             ->issuedAt($time) // Configures the time that the token was issue (iat claim)
-            ->expiresAt($time + 3600) // Configures the expiration time of the token (exp claim)
+            ->expiresAt($time + 1036800) // Configures the expiration time of the token (exp claim)
             ->withClaim('id', $id) // Configures a new claim, called "id"
             ->getToken($signer, $key); // Retrieves the generated token
         return (string) $token;
     }
+
 }

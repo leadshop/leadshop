@@ -256,7 +256,7 @@ function show_init_form()
     }
 
     if ($mysqlConnectCheck && !$mysqlConnectInvalid) {
-        $LANG['mysqlHost'] = $mysqlDatabaseDbInvalidMsg;
+        $LANG['mysqlHost'] = $mysqlDatabaseDbInvalidMsg ? $mysqlDatabaseDbInvalidMsg : "数据库配置错误";
     }
     if ($action && !$mysqlDatabase) {
         $LANG['mysqlDatabase'] = "数据库名称不能为空";

@@ -103,7 +103,7 @@ class IndexController extends BasicController
         $data = array_column($data, null, 'id');
         $list = [];
         foreach ($goods_id as $id) {
-            if ($data[$id]) {
+            if (isset($data[$id])) {
                 array_push($list, $data[$id]);
             }
         }

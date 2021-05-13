@@ -35,6 +35,8 @@
         "leadmall/api/plugin/view",
         "leadmall/api/plugin/create",
         "leadmall/api/plugin/delete",
-        "leadmall/api/plugin/update"
+        "leadmall/api/plugin/update",
+        "leadmall/api/reset/create",
+        "leadmall/app/reset/create"
     ]
 }

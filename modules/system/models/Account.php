@@ -9,9 +9,10 @@ namespace system\models;
 use framework\common\CommonModels;
 use sizeg\jwt\Jwt;
 use Yii;
-use yii\web\ForbiddenHttpException;
+use \framework\common\TokenHttpException;
 
-class Account extends CommonModels implements \yii\web\IdentityInterface {
+class Account extends CommonModels implements \yii\web\IdentityInterface
+{
     /**
      * 此处是字段为额外字段，不进行数据提交
      * @var [type]
@@ -28,7 +29,8 @@ class Account extends CommonModels implements \yii\web\IdentityInterface {
      * 否则会导致验证不生效，并且写入数据为空
      * @return [type] [description]
      */
-    public function rules() {
+    public function rules()
+    {
         return [
             ['mobile', 'unique', 'message' => '{attribute}已被使用', 'on' => ['register']],
             //任何场景都需要验证
@@ -43,7 +45,8 @@ class Account extends CommonModels implements \yii\web\IdentityInterface {
     /**
      * @inheritdoc
      */
-    public static function tableName() {
+    public static function tableName()
+    {
         return '{{%account}}';
     }
 
@@ -51,20 +54,35 @@ class Account extends CommonModels implements \yii\web\IdentityInterface {
      * 增加额外属性
      * @return [type] [description]
      */
-    public function attributes() {
+    public function attributes()
+    {
         $attributes = parent::attributes();
         return $attributes;
     }
 
-    public static function findIdentity($id) {
+    public static function findIdentity($id)
+    {
         return static::findOne($id);
     }
 
-    public static function findIdentityByAccessToken($token, $type = null) {
-        $token = Yii::$app->jwt->getParser()->parse((string) $token);
-        $data  = Yii::$app->jwt->getValidationData();
+    /**
+     * Token验证处理
+     * @param  [type] $token [description]
+     * @param  [type] $type  [description]
+     * @return [type]        [description]
+     */
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        $token  = Yii::$app->jwt->getParser()->parse((string) $token);
+        $data   = Yii::$app->jwt->getValidationData();
+        $AppID  = Yii::$app->params['AppID'] ? Yii::$app->params['AppID'] : '';
+        $host   = Yii::$app->request->hostInfo;
+        $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
+        $data->setIssuer($host);
+        $data->setAudience($origin);
+        $data->setId($AppID);
         $data->setCurrentTime(time());
-        if ($token->validate($data) || true) {
+        if ($token->validate($data)) {
             $id = $token->getClaim('id');
             if ($id) {
                 $data        = static::findOne($id);
@@ -75,18 +93,29 @@ class Account extends CommonModels implements \yii\web\IdentityInterface {
                 return null;
             }
         } else {
-            throw new ForbiddenHttpException('Token validation timeout');
+            if ($token->getClaim('jti') !== $AppID) {
+                throw new TokenHttpException('Leadshop应用ID验证错误', 419);
+            } else {
+                $data->setCurrentTime(time() - 21500);
+                if ($token->validate($data)) {
+                    throw new TokenHttpException('Token validation timeout', 420);
+                } else {
+                    throw new TokenHttpException('Token validation timeout', 419);
+                }
+            }
         }
     }
 
-    public function getId() {
+    public function getId()
+    {
         return $this->uid;
     }
 
     /**
      * @inheritdoc
      */
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return [
             'mobile'           => '手机号',
             'password'         => '密码',
@@ -94,15 +123,18 @@ class Account extends CommonModels implements \yii\web\IdentityInterface {
         ];
     }
 
-    public function getAuthKey() {
+    public function getAuthKey()
+    {
         return $this->authKey;
     }
 
-    public function view() {
+    public function view()
+    {
         return ['token'];
     }
 
-    public function validateAuthKey($authKey) {
+    public function validateAuthKey($authKey)
+    {
         return $this->authKey === $authKey;
     }
 }

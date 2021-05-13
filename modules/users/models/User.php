@@ -9,8 +9,7 @@ namespace users\models;
 
 use sizeg\jwt\Jwt;
 use Yii;
-use yii\web\ForbiddenHttpException;
-use yii\web\UnauthorizedHttpException;
+use \framework\common\TokenHttpException;
 
 /**
  * This is the model class for table "{{%user}}".
@@ -121,10 +120,16 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        $token = Yii::$app->jwt->getParser()->parse((string) $token);
-        $data  = Yii::$app->jwt->getValidationData();
+        $token  = Yii::$app->jwt->getParser()->parse((string) $token);
+        $data   = Yii::$app->jwt->getValidationData();
+        $AppID  = Yii::$app->params['AppID'] ? Yii::$app->params['AppID'] : '';
+        $host   = Yii::$app->request->hostInfo;
+        $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
+        $data->setIssuer($host);
+        $data->setAudience($origin);
+        $data->setId($AppID);
         $data->setCurrentTime(time());
-        if ($token->validate($data) || true) {
+        if ($token->validate($data)) {
             $id = $token->getClaim('id');
             if ($id) {
                 $data = static::find()->where(['id' => $id])->with(['oauth'])->one();
@@ -136,7 +141,16 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
                 return null;
             }
         } else {
-            throw new ForbiddenHttpException('Token validation timeout');
+            if ($token->getClaim('jti') !== $AppID) {
+                throw new TokenHttpException('Leadshop应用ID验证错误', 419);
+            } else {
+                $data->setCurrentTime(time() - 1036800);
+                if ($token->validate($data)) {
+                    throw new TokenHttpException('Token validation timeout', 420);
+                } else {
+                    throw new TokenHttpException('Token validation timeout', 419);
+                }
+            }
         }
     }
 
@@ -165,7 +179,8 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return $this->hasOne(Oauth::className(), ['UID' => 'id']);
     }
 
-    public function getLabellog(){
+    public function getLabellog()
+    {
         return $this->hasMany(LabelLog::className(), ['UID' => 'id'])->select('id,UID,label_id');
     }
 }

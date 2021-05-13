@@ -3,7 +3,7 @@
  * @Author: qinuoyun
  * @Date:   2020-08-20 13:46:09
  * @Last Modified by:   qinuoyun
- * @Last Modified time: 2021-04-29 10:34:30
+ * @Last Modified time: 2021-05-11 17:07:44
  */
 namespace framework\common;
 
@@ -78,16 +78,18 @@ class BasicController extends StoreController
             Yii::error(Yii::$app->params['runModule']);
         }
 
-        if (WE7_URL) {
-            $users      = \system\models\Account::find()->one();
-            $controller = (new \system\api\AccountController($this->id, $this->module));
-            $token      = $controller->getToken($users->id);
-            Yii::$app->request->getHeaders()->set("Authorization", "Bearer " . $token);
-        } else {
-            //解决微擎兼容问题
-            if (!Yii::$app->request->getHeaders()->get('Authorization') && Yii::$app->request->getHeaders()->get('token')) {
-                $token = Yii::$app->request->getHeaders()->get('token');
-                Yii::$app->request->getHeaders()->set("Authorization", $token);
+        if ($optional === '__qmpaas_white__') {
+            if (WE7_URL) {
+                $users      = \system\models\Account::find()->one();
+                $controller = (new \system\api\AccountController($this->id, $this->module));
+                $token      = $controller->getToken($users->id);
+                Yii::$app->request->getHeaders()->set("Authorization", "Bearer " . $token);
+            } else {
+                //解决微擎兼容问题
+                if (!Yii::$app->request->getHeaders()->get('Authorization') && Yii::$app->request->getHeaders()->get('token')) {
+                    $token = Yii::$app->request->getHeaders()->get('token');
+                    Yii::$app->request->getHeaders()->set("Authorization", $token);
+                }
             }
         }
 
