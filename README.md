@@ -1,15 +1,18 @@
-## 本周更新计划【20210420-20210423】
- **[点击查看本周更新计划](https://forum.leadshop.vip/thread/63)** 
+## 下期更新计划
+ **[点击查看更新计划](https://forum.leadshop.vip/thread/192)** 
 
 ## 更新历史
-**[点击查看V1.1.0更新内容](https://forum.leadshop.vip/thread/99)** 
+**[点击查看V1.1.5更新内容](https://forum.leadshop.vip/thread/170)** 
+
+**[点击查看V1.1.4更新内容](https://forum.leadshop.vip/thread/99)** 
  
 **[点击查看V1.0.1更新内容](https://forum.leadshop.vip/thread/57)** 
 
+ QQ群：849894135
  
  **Leadshop微信交流群** 
 
-![微信交流群](https://images.gitee.com/uploads/images/2021/0423/141626_6e2da520_7426632.png "微信交流群.png")
+![展示图](https://leadshop-1302407761.cos.ap-shanghai.myqcloud.com/public/attachments/2021/05/18/EAv0zuHQKvFTXkxTjCzCsZ0IL0oTR3mYHJEzqSi6.png)
 
 
  **qq交流群号：849894135** 
