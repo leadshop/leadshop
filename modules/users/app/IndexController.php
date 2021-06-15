@@ -7,9 +7,9 @@
 
 namespace users\app;
 
-use app\datamodel\ThirdWxapp;
-use app\forms\ExtMpForm;
+use coupon\models\Coupon;
 use framework\common\BasicController;
+use users\models\User;
 use Yii;
 
 /**
@@ -27,7 +27,8 @@ class IndexController extends BasicController
         return $actions;
     }
 
-    public function actionIndex(){
+    public function actionIndex()
+    {
         //获取操作
         $behavior = Yii::$app->request->get('behavior', '');
 
@@ -41,7 +42,8 @@ class IndexController extends BasicController
         }
     }
 
-    public function visit(){
+    public function visit()
+    {
         $AppID = Yii::$app->params['AppID'];
         $UID   = Yii::$app->user->identity->id ?? null;
         if ($UID) {
@@ -160,7 +162,7 @@ class IndexController extends BasicController
             Error('手机号获取失败');
         }
 
-        $check = M('users','User')::find()->where(['and',['mobile'=>$mobile],['<>','id',$UID]])->with(['oauth'=>function($query){
+        $check = M('users', 'User')::find()->where(['and', ['mobile' => $mobile], ['<>', 'id', $UID]])->with(['oauth' => function ($query) {
             $query->select('UID,type');
         }])->asArray()->all();
         if (!empty($check)) {
@@ -230,7 +232,7 @@ class IndexController extends BasicController
 
     public static function statistical($event)
     {
-        $data = $event->user_statistical;
+        $data  = $event->user_statistical;
         $check = M('users', 'UserStatistical')::find()->where(['UID' => $data['UID']])->one();
         if ($check) {
             if (isset($data['buy_number'])) {
@@ -284,5 +286,34 @@ class IndexController extends BasicController
             ->withClaim('id', $id) // Configures a new claim, called "id"
             ->getToken($signer, $key); // Retrieves the generated token
         return (string) $token;
+    }
+
+    public static function register($event)
+    {
+        Yii::info('触发用户注册事件');
+        $coupons = Coupon::find()->where([
+            'AND',
+            [
+                'AppID' => Yii::$app->params['AppID'],
+                'status' => 1,
+            ],
+            ['>', 'over_num', 0],
+            ['>', 'register_limit', 0],
+        ])->all();
+        $success = [];
+        /**@var Coupon $coupon*/
+        foreach ($coupons as $coupon) {
+            try {
+                $result = Coupon::obtain($coupon, [Yii::$app->user], 4, $coupon->register_limit, 2);
+                $success = array_merge($success, $result);
+            } catch (\Exception $exception) {
+                Yii::error('==============user register error begin============');
+                Yii::error($exception->getMessage());
+                Yii::error($exception);
+                Yii::error('==============user register error end============');
+            }
+        }
+        Yii::$app->cache->set('user_register_send_' . Yii::$app->user->id . '_' . Yii::$app->params['AppID'], $success);
+        return $success;
     }
 }

@@ -60,9 +60,6 @@ $components = [
         'payment'      => [
             'class' => \app\components\Payment::class,
         ],
-        'serializer'   => [
-            'class' => \app\components\Serializer::class,
-        ],
         'sms'          => [
             'class' => \app\components\Sms::class,
         ],
@@ -74,6 +71,9 @@ $components = [
         ],
         'subscribe'    => [
             'class' => \app\components\subscribe\Subscribe::class,
+        ],
+        'crontab'      => [
+            'class' => \app\components\crontab\Crontab::class,
         ]
     ],
 ];

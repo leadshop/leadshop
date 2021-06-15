@@ -35,7 +35,168 @@ class PosterController extends BasicsModules implements Map
     public function actionIndex()
     {
         $type     = Yii::$app->request->get('type', 1);
-        $goods_id = Yii::$app->request->get('goods_id', 1);
+        $goods_id = Yii::$app->request->get('goods_id', false);
+        if ($goods_id) {
+            return $this->goods($type,$goods_id);
+        }
+
+        $coupon_id = Yii::$app->request->get('coupon_id', false);
+        if ($coupon_id) {
+            return $this->coupon($type,$coupon_id);
+        }
+        
+    }
+
+    public function coupon($type,$coupon_id){
+        $model = M('coupon','Coupon')::findOne($coupon_id);
+        $mpConfig = isset(Yii::$app->params['apply']['weapp']) ? Yii::$app->params['apply']['weapp'] : null;
+        if (!$mpConfig || !$mpConfig['AppID'] || !$mpConfig['AppSecret']) {
+            Error('渠道参数不完整。');
+        }
+
+        $setting_data = M('setting', 'Setting')::find()->where(['keyword' => 'setting_collection', 'merchant_id' => 1, 'AppID' => Yii::$app->params['AppID']])->select('content')->asArray()->one();
+
+        $setting_data = to_array($setting_data['content']);
+        $setting_data = str2url($setting_data);
+
+        if ($model) {
+            $model = $model->toArray();
+
+            if ($model['expire_type'] == 1) {
+                $time = '可用时间：领取当日起'.$model['expire_day'].'天内';
+            } else {
+                $time = '可用时间：'.date("Y.m.d",$model['begin_time']).' - '.date("Y.m.d",$model['end_time']);
+            }
+            
+
+            //图片转换
+            $config = array(
+                'text'       => array(
+                    array(
+                        'text'      => $setting_data['store_setting']['name'],
+                        'left'      => 189,
+                        'top'       => 120,
+                        'fontPath'  => realpath('../system/static/PingFang.ttf'), //字体文件
+                        'fontSize'  => 20, //字号
+                        'fontColor' => '34,34,34', //字体颜色
+                        'angle'     => 0,
+                        'lineation' => 0,
+                    ),
+                    array(
+                        'text'      => '送你一张优惠券',
+                        'left'      => 190,
+                        'top'       => 150,
+                        'fontPath'  => realpath('../system/static/PingFang.ttf'), //字体文件
+                        'fontSize'  => 16, //字号
+                        'fontColor' => '153,153,153', //字体颜色
+                        'angle'     => 0,
+                        'lineation' => 0,
+                    ),
+                    array(
+                        'text'      => '¥',
+                        'left'      => 150,
+                        'top'       => 270,
+                        'fontPath'  => realpath('../system/static/PingFang.ttf'), //字体文件
+                        'fontSize'  => 22, //字号
+                        'fontColor' => '255,255,255', //字体颜色
+                        'angle'     => 0,
+                        'lineation' => 0,
+                    ),
+                    array(
+                        'text'      => $model['min_price']*1>0?'满'.$model['min_price'].'可用':'无门槛',
+                        'left'      => 168+(mb_strlen($model['sub_price']) * 28),
+                        'top'       => 265,
+                        'fontPath'  => realpath('../system/static/PingFang.ttf'), //字体文件
+                        'fontSize'  => 22, //字号
+                        'fontColor' => '255,255,255', //字体颜色
+                        'angle'     => 0,
+                        'lineation' => 0,
+                    ),
+                    array(
+                        'text'      => $model['sub_price'],
+                        'left'      => 168,
+                        'top'       => 265,
+                        'fontPath'  => realpath('../system/static/DINPro.ttf'), //字体文件
+                        'fontSize'  => 40, //字号
+                        'fontColor' => '255,255,255', //字体颜色
+                        'angle'     => 0,
+                        'lineation' => 0,
+                    ),
+                    array(
+                        'text'      => $model['name'],
+                        'left'      => 149,
+                        'top'       => 315,
+                        'fontPath'  => realpath('../system/static/PingFang.ttf'), //字体文件
+                        'fontSize'  => 24, //字号
+                        'fontColor' => '255,255,255', //字体颜色
+                        'angle'     => 0,
+                        'lineation' => 0,
+                    ),
+                    array(
+                        'text'      => $time,
+                        'left'      => 149,
+                        'top'       => 355,
+                        'fontPath'  => realpath('../system/static/PingFang.ttf'), //字体文件
+                        'fontSize'  => 15, //字号
+                        'fontColor' => '255,255,255', //字体颜色
+                        'angle'     => 0,
+                        'lineation' => 0,
+                    ),
+                    array(
+                        'text'      => $type == 1 ?'长按识别二维码':'长按识别小程序码',
+                        'left'      => $type == 1?305:295,
+                        'top'       => 735,
+                        'fontPath'  => realpath('../system/static/PingFang.ttf'), //字体文件
+                        'fontSize'  => 16, //字号
+                        'fontColor' => '153,153,153', //字体颜色
+                        'angle'     => 0,
+                        'lineation' => 0,
+                    ),
+
+                ),
+                'image'      => array(
+                    array(
+                        'url'     => $setting_data['store_setting']['logo'],
+                        'left'    => 101,
+                        'top'     => 96,
+                        'right'   => 0,
+                        'stream'  => 0,
+                        'bottom'  => 0,
+                        'width'   => 64,
+                        'height'  => 64,
+                        'opacity' => 100,
+                        'radius'  => 32,
+                        'color'   => '255, 255, 255',
+                    ),
+                    //二维码
+                    array(
+                        'url'     => $type == 1 ? $this->getWechatQrCode("pages/coupon/detail", "couponShare=1&id=" . $model['id']) : $this->getWeappQrCode("pages/coupon/detail", "couponShare=1&id=" . $model['id']),
+                        'left'    => 285,
+                        'top'     => 508,
+                        'right'   => 0,
+                        'stream'  => 1,
+                        'bottom'  => 0,
+                        'width'   => 190,
+                        'height'  => 190,
+                        'opacity' => 100,
+                        'radius'  => 0,
+                        'color'   => '255, 255, 255',
+                    ),
+                ),
+                'background' => 'http://qmxq.oss-cn-hangzhou.aliyuncs.com/guide/coupon_bg.png',
+            );
+            //createPoster($config);
+            ob_start();
+            echo createPoster($config);
+            $imagedata = ob_get_contents();
+            ob_end_clean();
+            return 'data:image/png;base64,' . base64_encode($imagedata);
+        } else {
+            Error('优惠券不存在');
+        }
+    }
+
+    public function goods($type,$goods_id){
         $model    = M('goods', 'Goods')::find()->where(['id' => $goods_id])->one();
 
         $mpConfig = isset(Yii::$app->params['apply']['weapp']) ? Yii::$app->params['apply']['weapp'] : null;
@@ -54,7 +215,6 @@ class PosterController extends BasicsModules implements Map
             $model = str2url($model);
             //获取商品ID
             $img        = to_array($model['slideshow']);
-            $wappQrCode = $this->getWeappQrCode("pages/goods/detail", "id=" . $model['id']);
             //图片转换
             $config = array(
                 'text'       => array(

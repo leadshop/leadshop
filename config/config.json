@@ -12,6 +12,9 @@
         "leadmall/app/poster/index",
         "leadmall/api/install/create",
         "leadmall/api/login/create",
+        "leadmall/api/cloud/index",
+        "leadmall/api/crontab/index",
+        "leadmall/api/crontab/create",
         "leadmall/app/fitment/create",
         "leadmall/app/qrcode/create",
         "leadmall/app/login/create",
@@ -36,7 +39,10 @@
         "leadmall/api/plugin/create",
         "leadmall/api/plugin/delete",
         "leadmall/api/plugin/update",
+        "leadmall/app/coupon/index",
+        "leadmall/app/coupon/view",
         "leadmall/api/reset/create",
         "leadmall/app/reset/create"
+
     ]
 }

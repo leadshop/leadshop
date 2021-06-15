@@ -89,6 +89,15 @@ class leadmall
                     ],
                     // uncomment the following to add your IP if you are not connecting from localhost.
                     'allowedIPs' => isset($local['debugAllowedIPs']) ? $local['debugAllowedIPs'] : ['127.0.0.1', '::1', '*'],
+                    'historySize' => 2000
+                ];
+
+                // Yii2 gii模块（脚手架）
+                $config['bootstrap'][] = 'gii';
+                $config['modules']['gii'] = [
+                    'class' => 'yii\gii\Module',
+                    // uncomment the following to add your IP if you are not connecting from localhost.
+                    'allowedIPs' => isset($local['giiAllowedIPs']) ? $local['giiAllowedIPs'] : ['127.0.0.1', '::1'],
                 ];
             }
             $this->config = $config;

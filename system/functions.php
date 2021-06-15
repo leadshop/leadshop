@@ -4,7 +4,7 @@
  * @Author: qinuoyun
  * @Date:   2020-09-09 15:12:15
  * @Last Modified by:   qinuoyun
- * @Last Modified time: 2021-04-27 11:54:36
+ * @Last Modified time: 2021-05-18 08:53:52
  */
 
 if (!function_exists('import')) {
@@ -56,11 +56,12 @@ if (!function_exists('createPoster')) {
         $background       = $backgroundFun($background);
         $backgroundWidth  = imagesx($background); //背景宽度
         $backgroundHeight = imagesy($background); //背景高度
-        $imageRes         = imageCreatetruecolor($backgroundWidth, $backgroundHeight);
-        $color            = imagecolorallocate($imageRes, 0, 0, 0);
+        $imageRes         = imagecreatetruecolor($backgroundWidth, $backgroundHeight);
+        $color            = imagecolorallocatealpha($imageRes, 0, 0, 0,127);
         imagefill($imageRes, 0, 0, $color);
         // imageColorTransparent($imageRes, $color);  //颜色透明
         imagecopyresampled($imageRes, $background, 0, 0, 0, 0, imagesx($background), imagesy($background), imagesx($background), imagesy($background));
+        imagesavealpha($imageRes, true);
         //处理了图片
         if (!empty($config['image'])) {
             foreach ($config['image'] as $key => $val) {
@@ -425,9 +426,9 @@ if (!function_exists('Error')) {
      * [Error description]
      * @param string $value [description]
      */
-    function Error($msg = '系统错误', $code = 403)
+    function Error($msg = '系统错误', $code = 403, $type = null)
     {
-        return (new framework\common\ErrorCentral($msg, $code));
+        return (new framework\common\ErrorCentral($msg, $code, $type));
     }
 }
 
@@ -871,9 +872,10 @@ if (!function_exists('remove_dir')) {
 
 if (!function_exists('app_version')) {
     /**
+     * @param string $type
      * @return string
      */
-    function app_version()
+    function app_version($type = 'version')
     {
         if (!class_exists('\Yii')) {
             return '0.0.0';
@@ -890,6 +892,6 @@ if (!function_exists('app_version')) {
         if (!$versionData) {
             return '0.0.0';
         }
-        return isset($versionData['version']) ? $versionData['version'] : '0.0.0';
+        return isset($versionData[$type]) ? $versionData[$type] : '0.0.0';
     }
 }

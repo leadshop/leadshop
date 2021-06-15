@@ -21,8 +21,8 @@ class IndexController extends BasicController
      */
     public function actions()
     {
-        M('users', 'Label')::findOne(['id'=>1]);
-        M('users', 'LabelLog')::findOne(['id'=>1]);
+        M('users', 'Label')::findOne(['id' => 1]);
+        M('users', 'LabelLog')::findOne(['id' => 1]);
         $actions = parent::actions();
         unset($actions['index']);
         unset($actions['view']);
@@ -365,6 +365,8 @@ class IndexController extends BasicController
             }
         }
 
+        $result['coupon'] = M('coupon','UserCoupon')::find()->where(['UID'=>$id,'is_deleted'=>0])->count('id');
+
         return $result;
     }
 
@@ -401,18 +403,18 @@ class IndexController extends BasicController
             Error('用户不存在');
         }
 
-        if ($post['mobile']) {
-            if (!preg_match("/^1[34578]\d{9}$/", $post['mobile'])) {
+        if (N('mobile')) {
+            if (!preg_match("/^1[0-9]{10}$/", $post['mobile'])) {
                 Error('请填写正确手机号');
             }
-        }
-        $check = M('users', 'User')::find()->where(['and', ['mobile' => $post['mobile']], ['<>', 'id', $id]])->with(['oauth' => function ($query) {
-            $query->select('UID,type');
-        }])->asArray()->all();
-        if (!empty($check)) {
-            foreach ($check as $value) {
-                if ($value['oauth']['type'] === $model->oauth->type) {
-                    Error('手机号已存在');
+            $check = M('users', 'User')::find()->where(['and', ['mobile' => $post['mobile']], ['<>', 'id', $id]])->with(['oauth' => function ($query) {
+                $query->select('UID,type');
+            }])->asArray()->all();
+            if (!empty($check)) {
+                foreach ($check as $value) {
+                    if ($value['oauth']['type'] === $model->oauth->type) {
+                        Error('手机号已存在');
+                    }
                 }
             }
         }

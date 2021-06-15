@@ -28,6 +28,7 @@ class StatisticalController extends BasicsModules implements Map
 
     public function actionIndex()
     {
+
         $behavior = Yii::$app->request->get('behavior', '');
 
         switch ($behavior) {

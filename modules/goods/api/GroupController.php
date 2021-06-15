@@ -43,6 +43,19 @@ class GroupController extends BasicController
      */
     public function actionIndex()
     {
+        $type2_p = $this->modelClass::find()->where(['type'=>2,'parent_id'=>0])->select('id')->asArray()->all();
+        if (!empty($type2_p)) {
+            $type2_p = array_column($type2_p,'id');
+            $this->modelClass::updateAll(['type'=>2],['parent_id'=>$type2_p]);
+        }
+        $type3_p = $this->modelClass::find()->where(['type'=>3,'parent_id'=>0])->select('id')->asArray()->all();
+        if (!empty($type3_p)) {
+            $type3_p = array_column($type3_p,'id');
+            $type3_p2 = $this->modelClass::find()->where(['parent_id'=>$type3_p])->select('id')->asArray()->all();
+            $type3_p2 = array_column($type3_p2,'id');
+            $type3_p = array_merge($type3_p,$type3_p2);
+            $this->modelClass::updateAll(['type'=>3],['parent_id'=>$type3_p]);
+        }
         $get         = Yii::$app->request->get();
         $merchant_id = 1;
         $AppID       = Yii::$app->params['AppID'];
@@ -137,6 +150,7 @@ class GroupController extends BasicController
                             Error('分组超过三级，无法添加');
                         }
                         $post['path'] = $parent_info['path'] . '-' . $post['parent_id'];
+                        $post['type'] = $parent_info['type'];
                     } else {
                         Error('父级分组不存在');
                     }

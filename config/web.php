@@ -16,6 +16,7 @@ $aliases = require __DIR__ . '/aliases.php';
 
 $config = [
     'id'         => 'basic',
+    'language'   => 'zh-CN',
     'aliases'    => $aliases,
     'basePath'   => dirname(__DIR__),
     'components' => [

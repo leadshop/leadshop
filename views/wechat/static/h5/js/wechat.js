@@ -16,27 +16,27 @@ function call() {
     }
 }
 
-function init(callback) {
+function init(callback, jsApiList = [
+    "chooseWXPay",
+    "hideAllNonBaseMenuItem",
+    "showMenuItems",
+    "onMenuShareAppMessage",
+    "updateTimelineShareData",
+    "onMenuShareTimeline",
+    "hideMenuItems"
+]) {
     if (isWechat()) {
         let url = window.location.href.split('#')[0];
         Vue.prototype.$heshop.jssdk('get', {
             url: url
         }).then((e) => {
-            let apiList = [
-                "chooseWXPay",
-                "hideAllNonBaseMenuItem",
-                "showMenuItems",
-                "onMenuShareAppMessage",
-                "updateTimelineShareData",
-                "onMenuShareTimeline"
-            ];
             let config = {
                 debug: false,
                 appId: e.appid,
                 timestamp: e.timestamp,
                 nonceStr: e.noncestr,
                 signature: e.signature,
-                jsApiList: apiList,
+                jsApiList: jsApiList,
                 openTagList: ['wx-open-subscribe']
             };
             jWeixin.config(config);
@@ -50,7 +50,16 @@ function init(callback) {
     }
 }
 
-function chooseWXPay({ timestamp, nonceStr, packAge, signType, paySign, success, fail, cancel }) {
+function chooseWXPay({
+    timestamp,
+    nonceStr,
+    packAge,
+    signType,
+    paySign,
+    success,
+    fail,
+    cancel
+}) {
     jWeixin.chooseWXPay({
         timestamp: timestamp,
         nonceStr: nonceStr,
@@ -67,8 +76,7 @@ function chooseWXPay({ timestamp, nonceStr, packAge, signType, paySign, success,
         cancel: function (res) {
             cancel && cancel(res);
         },
-        complete: function () {
-        }
+        complete: function () {}
     });
 }
 
@@ -78,50 +86,70 @@ function hideAllNonBaseMenuItem() {
     });
 }
 
-function showMenuItems() {
+// 批量显示功能按钮接口
+function showMenuItems({
+    menuList = []
+}) {
     init(function (jssdk) {
         jssdk.showMenuItems({
-            menuList: [
-                "menuItem:share:appMessage"
-            ]
+            menuList: menuList // 要显示的菜单项
         });
-    });
+    }, ["showMenuItems"]);
 }
 
-function onMenuShareAppMessage({ title = '', desc = ' ', link = '', imgUrl = '' }) {
+// 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮
+function hideMenuItems({
+    menuList = []
+}) {
     init(function (jssdk) {
+        jssdk.hideMenuItems({
+            menuList: menuList
+        });
+    }, ["hideMenuItems"]);
+}
+
+// 分享
+function updateShareData({
+    title = '',
+    desc = ' ',
+    path = '',
+    imageUrl = ''
+}) {
+    let {
+        origin,
+        pathname,
+    } = window.location;
+    init(function (jssdk) {
+        // 分享给用户
         jssdk.onMenuShareAppMessage({
             title: title, // 分享标题
             desc: desc, // 分享描述
-            link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: imgUrl, // 分享图标
-            type: 'link'// 如果type是music或video，则要提供数据链接，默认为空
+            link: origin + pathname + "?r=wechat#" + path, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: imageUrl, // 分享图标
+            type: 'link' // 如果type是music或video，则要提供数据链接，默认为空
         });
-    });
-}
-
-function updateTimelineShareData({ title = '', link = '', imgUrl = '' }) {
-    init(function (jssdk) {
+        // 分享到朋友圈
         jssdk.updateTimelineShareData({
             title: title, // 分享标题
-            link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: imgUrl, // 分享图标
+            link: origin + pathname + "?r=wechat#" + path, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: imageUrl, // 分享图标
         });
+        // 兼容分享到朋友圈（官网已经说废弃）
         jssdk.onMenuShareTimeline({
             title: title, // 分享标题
-            link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: imgUrl, // 分享图标
+            link: origin + pathname + "?r=wechat#" + path, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: imageUrl, // 分享图标
         });
-    });
+    }, ["onMenuShareAppMessage", "updateTimelineShareData", "onMenuShareTimeline"])
 }
 
 export default {
     isWechat,
-    onMenuShareAppMessage,
     showMenuItems,
     hideAllNonBaseMenuItem,
     chooseWXPay,
-    updateTimelineShareData,
+    updateShareData,
     init,
-    call
+    call,
+    hideMenuItems
 }

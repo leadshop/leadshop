@@ -95,6 +95,8 @@ class IndexController extends BasicController
             'normal'  => [], //正常的
             'failure' => [], //失效的
         ];
+
+        $normal_number = 0;
         foreach ($data as $v) {
             $price            = 0;
             $goods_sn         = '';
@@ -141,11 +143,20 @@ class IndexController extends BasicController
             if ($v['failure_reason']) {
                 array_push($return_data['failure'], $v);
             } else {
+                $normal_number += $v['goods_number'];
                 array_push($return_data['normal'], $v);
             }
 
         }
-        return str2url($return_data);
+        $behavior = Yii::$app->request->get('behavior', '');
+        if ($behavior == 'number') {
+            if ($normal_number > 99) {
+                $normal_number = '99+';
+            }
+            return $normal_number;
+        } else {
+            return str2url($return_data);
+        }
     }
 
     /**
@@ -183,9 +194,9 @@ class IndexController extends BasicController
 
         $check = M()::find()->where(['and', ['<>', 'id', $id], ['goods_id' => $model->goods_id, 'goods_param' => $post['goods_param'], 'UID' => $model->UID]])->one();
 
-        $info = M('goods', 'Goods')::find()->where(['id' => $model->goods_id])->select('id,name,slideshow,limit_buy_status,limit_buy_value')->with('param')->asArray()->one();
+        $info = M('goods', 'Goods')::find()->where(['id' => $model->goods_id])->select('id,name,slideshow,limit_buy_status,limit_buy_value,min_number')->with('param')->asArray()->one();
         if ($info['limit_buy_status'] === 1) {
-            $owned_number = M()::find()->where(['and',['goods_id' => $model->goods_id, 'UID' => $model->UID],['<>','id',$id]])->SUM('goods_number');
+            $owned_number = M()::find()->where(['and', ['goods_id' => $model->goods_id, 'UID' => $model->UID], ['<>', 'id', $id]])->SUM('goods_number');
             if (($owned_number + $post['goods_number']) > $info['limit_buy_value']) {
                 Error('添加数超过限购数量');
             }
@@ -231,7 +242,17 @@ class IndexController extends BasicController
             $model->setAttributes($post);
             if ($model->validate()) {
                 if ($model->save()) {
-                    return str2url($model->toArray());
+                    $result     = str2url($model->toArray());
+                    $goods_data = array_column($info['param']['goods_data'], null, 'param_value');
+
+                    $result['price']            = $goods_data[$result['goods_param']]['price'];
+                    $result['goods_sn']         = $goods_data[$result['goods_param']]['goods_sn'];
+                    $result['stocks']           = $goods_data[$result['goods_param']]['stocks'];
+                    $result['min_number']       = $info['min_number'];
+                    $result['limit_buy_status'] = $info['limit_buy_status'];
+                    $result['limit_buy_value']  = $info['limit_buy_value'];
+
+                    return $result;
                 } else {
                     Error('保存失败');
                 }

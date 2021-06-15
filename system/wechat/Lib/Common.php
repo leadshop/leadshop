@@ -166,7 +166,7 @@ class Common
             return $this->access_token = $token;
         }
         $cache = 'wechat_access_token_' . $appid;
-        if (($access_token = Tools::getCache($cache)) && !empty($access_token)) {
+        if (($access_token = Tools::getCache($cache)) && !empty($access_token) && $this->checkAccessToken($access_token)) {
             return $this->access_token = $access_token;
         }
         # 检测事件注册
@@ -180,12 +180,37 @@ class Common
                 $this->errCode = $json['errcode'];
                 $this->errMsg  = $json['errmsg'];
                 Tools::log("Get New AccessToken Error. {$this->errMsg}[{$this->errCode}]", "ERR - {$this->appid}");
+                Error($json['errcode'].'，'.$json['errmsg']);
                 return false;
             }
             $this->access_token = $json['access_token'];
             Tools::log("Get New AccessToken Success.", "MSG - {$this->appid}");
             Tools::setCache($cache, $this->access_token, 5000);
             return $this->access_token;
+        }
+        return false;
+    }
+
+    /**
+     * 检查accessToken有效性
+     * @param $token
+     * @return bool|mixed
+     */
+    private function checkAccessToken($token)
+    {
+        $cacheKey = 'CHECK_VERIFY_TOKEN-' . $token;
+        if (\Yii::$app->cache->get($cacheKey) === true) {
+            return true;
+        }
+        $api = "https://api.weixin.qq.com/cgi-bin/getcallbackip?access_token={$token}";
+        $result = Tools::httpGet($api);
+        if ($result) {
+            $json = json_decode($result, true);
+            if (!$json || isset($json['errcode'])) {
+                return false;
+            }
+            \Yii::$app->cache->set($cacheKey, true, 120);
+            return true;
         }
         return false;
     }

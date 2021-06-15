@@ -27,7 +27,7 @@ class CouponExpireMessage extends BaseSubscribeMessage
             'thing5' => [
                 'value' => $this->couponName
             ],
-            'time8' => [
+            'time3' => [
                 'value' => $this->expire
             ],
             'thing1' => [

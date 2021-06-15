@@ -22,12 +22,12 @@ class OrderGoods extends CommonModels
     const show_goods_param = ['varchar' => 255, 'notNull', 'comment' => '商品展示规格'];
     const goods_param      = ['varchar' => 255, 'notNull', 'comment' => '商品规格'];
     const goods_price      = ['decimal' => '10,2', 'notNull', 'comment' => '商品价格'];
-    const goods_cost_price = ['decimal' => '10,2', 'comment' => '商品价格'];
+    const goods_cost_price = ['decimal' => '10,2', 'comment' => '商品成本价格'];
     const goods_weight     = ['decimal' => '10,2', 'comment' => '商品重量'];
     const goods_number     = ['int' => 10, 'notNull', 'comment' => '商品数量'];
     const total_amount     = ['decimal' => '10,2', 'notNull', 'comment' => '总计金额'];
     const pay_amount       = ['decimal' => '10,2', 'notNull', 'comment' => '实付金额'];
-    const promotion_amount = ['decimal' => '10,2', 'comment' => '优惠金额'];
+    const coupon_reduced   = ['decimal' => '10,2', 'notNull', 'default' => 0, 'comment' => '优惠券优惠金额'];
     const after_sales      = ['tinyint' => 1, 'notNull', 'default' => 0, 'comment' => '0正常 1进行售后'];
     const is_evaluate      = ['tinyint' => 1, 'notNull', 'default' => 0, 'comment' => '0未评价 1已评价'];
     const created_time     = ['bigint' => 10, 'comment' => '创建时间'];

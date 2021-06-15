@@ -10,6 +10,7 @@ namespace users\models;
 use sizeg\jwt\Jwt;
 use Yii;
 use \framework\common\TokenHttpException;
+use yii\web\UnauthorizedHttpException;
 
 /**
  * This is the model class for table "{{%user}}".
@@ -182,5 +183,9 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function getLabellog()
     {
         return $this->hasMany(LabelLog::className(), ['UID' => 'id'])->select('id,UID,label_id');
+    }
+
+    public function getCoupon(){
+        return $this->hasMany('coupon\models\UserCoupon',['UID'=>'id']);
     }
 }

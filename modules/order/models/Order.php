@@ -12,36 +12,36 @@ use framework\common\CommonModels;
 
 class Order extends CommonModels
 {
-    const id               = ['bigkey' => 20, 'unique', 'comment' => 'ID'];
-    const order_sn         = ['varchar' => 50, 'notNull', 'comment' => '订单号'];
-    const UID              = ['bigint' => 20, 'notNull', 'comment' => '买家ID'];
-    const total_amount     = ['decimal' => '10,2', 'notNull', 'default' => 0, 'comment' => '总计价格'];
-    const pay_amount       = ['decimal' => '10,2', 'notNull', 'default' => 0, 'comment' => '实际支付'];
-    const goods_amount     = ['decimal' => '10,2', 'notNull', 'default' => 0, 'comment' => '商品金额'];
-    const goods_reduced    = ['decimal' => '10,2', 'notNull', 'default' => 0, 'comment' => '商品减少'];
-    const freight_amount   = ['decimal' => '10,2', 'notNull', 'default' => 0, 'comment' => '物流金额'];
-    const freight_reduced  = ['decimal' => '10,2', 'notNull', 'default' => 0, 'comment' => '物流减少'];
-    const promotion_amount = ['decimal' => '10,2', 'notNull', 'default' => 0, 'comment' => '促销活动优惠金额'];
-    const status           = ['smallint' => 3, 'notNull', 'default' => 100, 'comment' => '100待付款  101用户取消 102超时取消 103商户取消  201已付款(待发货)  202已发货(待收货)  203已收货 204已完成'];
-    const after_sales      = ['tinyint' => 1, 'notNull', 'default' => 0, 'comment' => '0正常  1售后中'];
-    const source           = ['varchar' => 50, 'notNull', 'comment' => '来源'];
-    const pay_type         = ['varchar' => 20, 'comment' => 'wechat微信  alipay支付宝'];
-    const pay_number       = ['varchar' => 255, 'comment' => '支付交易号'];
-    const pay_time         = ['bigint' => 10, 'comment' => '支付时间'];
-    const cancel_time      = ['bigint' => 10, 'comment' => '关闭时间'];
-    const send_time        = ['bigint' => 10, 'comment' => '发货时间'];
-    const received_time    = ['bigint' => 10, 'comment' => '收货时间'];
-    const finish_time      = ['bigint' => 10, 'comment' => '结束时间'];
-    const evaluate_time    = ['bigint' => 10, 'comment' => '评价时间'];
-    const note             = ['varchar' => 255, 'comment' => '商家备注'];
-    const AppID            = ['varchar' => 50, 'notNull', 'comment' => '应用ID'];
-    const merchant_id      = ['bigint' => 10, 'notNull', 'comment' => '商户ID'];
-    const is_evaluate      = ['tinyint' => 1, 'notNull', 'default' => 0, 'comment' => '0未评价 1已评价'];
-    const created_time     = ['bigint' => 10, 'comment' => '创建时间'];
-    const updated_time     = ['bigint' => 10, 'comment' => '修改时间'];
-    const deleted_time     = ['bigint' => 10, 'comment' => '删除时间'];
-    const is_recycle       = ['tinyint' => 1, 'default' => 0, 'comment' => '是否在回收站'];
-    const is_deleted       = ['tinyint' => 1, 'default' => 0, 'comment' => '删除状态'];
+    const id              = ['bigkey' => 20, 'unique', 'comment' => 'ID'];
+    const order_sn        = ['varchar' => 50, 'notNull', 'comment' => '订单号'];
+    const UID             = ['bigint' => 20, 'notNull', 'comment' => '买家ID'];
+    const total_amount    = ['decimal' => '10,2', 'notNull', 'default' => 0, 'comment' => '总计价格'];
+    const pay_amount      = ['decimal' => '10,2', 'notNull', 'default' => 0, 'comment' => '实际支付'];
+    const goods_amount    = ['decimal' => '10,2', 'notNull', 'default' => 0, 'comment' => '商品金额'];
+    const goods_reduced   = ['decimal' => '10,2', 'notNull', 'default' => 0, 'comment' => '商品减少'];
+    const freight_amount  = ['decimal' => '10,2', 'notNull', 'default' => 0, 'comment' => '物流金额'];
+    const freight_reduced = ['decimal' => '10,2', 'notNull', 'default' => 0, 'comment' => '物流减少'];
+    const coupon_reduced  = ['decimal' => '10,2', 'notNull', 'default' => 0, 'comment' => '优惠券优惠金额'];
+    const status          = ['smallint' => 3, 'notNull', 'default' => 100, 'comment' => '100待付款  101用户取消 102超时取消 103商户取消  201已付款(待发货)  202已发货(待收货)  203已收货 204已完成'];
+    const after_sales     = ['tinyint' => 1, 'notNull', 'default' => 0, 'comment' => '0正常  1售后中'];
+    const source          = ['varchar' => 50, 'notNull', 'comment' => '来源'];
+    const pay_type        = ['varchar' => 20, 'comment' => 'wechat微信  alipay支付宝'];
+    const pay_number      = ['varchar' => 255, 'comment' => '支付交易号'];
+    const pay_time        = ['bigint' => 10, 'comment' => '支付时间'];
+    const cancel_time     = ['bigint' => 10, 'comment' => '关闭时间'];
+    const send_time       = ['bigint' => 10, 'comment' => '发货时间'];
+    const received_time   = ['bigint' => 10, 'comment' => '收货时间'];
+    const finish_time     = ['bigint' => 10, 'comment' => '结束时间'];
+    const evaluate_time   = ['bigint' => 10, 'comment' => '评价时间'];
+    const note            = ['varchar' => 255, 'comment' => '商家备注'];
+    const AppID           = ['varchar' => 50, 'notNull', 'comment' => '应用ID'];
+    const merchant_id     = ['bigint' => 10, 'notNull', 'comment' => '商户ID'];
+    const is_evaluate     = ['tinyint' => 1, 'notNull', 'default' => 0, 'comment' => '0未评价 1已评价'];
+    const created_time    = ['bigint' => 10, 'comment' => '创建时间'];
+    const updated_time    = ['bigint' => 10, 'comment' => '修改时间'];
+    const deleted_time    = ['bigint' => 10, 'comment' => '删除时间'];
+    const is_recycle      = ['tinyint' => 1, 'default' => 0, 'comment' => '是否在回收站'];
+    const is_deleted      = ['tinyint' => 1, 'default' => 0, 'comment' => '删除状态'];
 
     /**
      * 实现数据验证
@@ -56,7 +56,7 @@ class Order extends CommonModels
             //创建订单
             [['order_sn', 'UID', 'total_amount', 'pay_amount', 'goods_amount', 'merchant_id', 'AppID', 'source'], 'required', 'message' => '{attribute}不能为空'],
             [['UID', 'merchant_id'], 'integer', 'message' => '{attribute}必须是整数'],
-            [['total_amount', 'pay_amount', 'goods_amount', 'freight_amount', 'cancel_time'], 'number', 'message' => '{attribute}必须是数字'],
+            [['total_amount', 'pay_amount', 'goods_amount', 'freight_amount', 'cancel_time', 'coupon_reduced'], 'number', 'message' => '{attribute}必须是数字'],
 
         ];
     }
@@ -86,7 +86,7 @@ class Order extends CommonModels
     public function scenarios()
     {
         $scenarios           = parent::scenarios();
-        $scenarios['create'] = ['order_sn', 'status', 'UID', 'total_amount', 'pay_amount', 'goods_amount', 'freight_amount', 'merchant_id', 'cancel_time', 'source', 'AppID'];
+        $scenarios['create'] = ['order_sn', 'status', 'UID', 'total_amount', 'pay_amount', 'goods_amount', 'coupon_reduced', 'freight_amount', 'merchant_id', 'cancel_time', 'source', 'AppID'];
 
         return $scenarios;
     }

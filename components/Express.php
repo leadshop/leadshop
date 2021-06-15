@@ -11,6 +11,7 @@ namespace app\components;
 
 use app\components\express\AliExpress;
 use app\components\express\BaseExpress;
+use app\components\express\KbExpress;
 use yii\base\Component;
 
 class Express extends Component
@@ -18,7 +19,7 @@ class Express extends Component
     /**@var BaseExpress $express*/
     private $express;
 
-    public function setExpress($ex = 'Ali')
+    public function setExpress($ex = 'Kb')
     {
         $class = $ex.'Express';
         $this->express = new $class();
@@ -27,7 +28,7 @@ class Express extends Component
     public function getExpress()
     {
         if (!$this->express) {
-            return new AliExpress();
+            return new KbExpress();
         }
         return $this->express;
     }

@@ -2,8 +2,8 @@
 /**
  * @Author: qinuoyun
  * @Date:   2020-08-20 13:46:09
- * @Last Modified by:   wiki
- * @Last Modified time: 2021-03-11 17:37:26
+ * @Last Modified by:   qinuoyun
+ * @Last Modified time: 2021-05-18 08:58:49
  */
 namespace framework\wechat;
 
@@ -38,29 +38,34 @@ class WechatApplet extends Common
         // 1. 获取 session key
         $Session = $this->getCode2Session($code);
 
-        // 2. 生成 3rd key (skey)
-        $skey = sha1($Session['session_key'] . mt_rand());
+        if ($Session) {
+            // 2. 生成 3rd key (skey)
+            $skey = sha1($Session['session_key'] . mt_rand());
 
-        /**
-         * 3. 解密数据
-         * 由于官方的解密方法不兼容 PHP 7.1+ 的版本
-         * 这里弃用微信官方的解密方法
-         * 采用推荐的 openssl_decrypt 方法（支持 >= 5.3.0 的 PHP）
-         * @see http://php.net/manual/zh/function.openssl-decrypt.php
-         */
-        $decryptData = \openssl_decrypt(
-            base64_decode($encryptedData),
-            'AES-128-CBC',
-            base64_decode($Session['session_key']),
-            OPENSSL_RAW_DATA,
-            base64_decode($iv)
-        );
-        $userinfo   = json_decode($decryptData, true);
-        if ($userinfo) {
-            $userinfo['openId'] = $Session['openid'];
+            /**
+             * 3. 解密数据
+             * 由于官方的解密方法不兼容 PHP 7.1+ 的版本
+             * 这里弃用微信官方的解密方法
+             * 采用推荐的 openssl_decrypt 方法（支持 >= 5.3.0 的 PHP）
+             * @see http://php.net/manual/zh/function.openssl-decrypt.php
+             */
+            $decryptData = \openssl_decrypt(
+                base64_decode($encryptedData),
+                'AES-128-CBC',
+                base64_decode($Session['session_key']),
+                OPENSSL_RAW_DATA,
+                base64_decode($iv)
+            );
+            $userinfo = json_decode($decryptData, true);
+            if ($userinfo) {
+                $userinfo['openId'] = $Session['openid'];
+            }
+            $sessionKey = $Session['session_key'];
+            return compact('userinfo', 'skey', 'sessionKey');
+        } else {
+            Error($this->errMsg, $this->errCode, 'wechat');
         }
-        $sessionKey = $Session['session_key'];
-        return compact('userinfo', 'skey', 'sessionKey');
+
     }
 
     /**
@@ -87,9 +92,10 @@ class WechatApplet extends Common
         return false;
     }
 
-    public function getMobile($code, $encryptedData, $iv){
+    public function getMobile($code, $encryptedData, $iv)
+    {
         // 1. 获取 session key
-        $Session = $this->getCode2Session($code);
+        $Session     = $this->getCode2Session($code);
         $decryptData = openssl_decrypt(
             base64_decode($encryptedData),
             'AES-128-CBC',
@@ -98,7 +104,7 @@ class WechatApplet extends Common
             base64_decode($iv)
         );
 
-        return json_decode($decryptData,true);
+        return json_decode($decryptData, true);
     }
 
     /**

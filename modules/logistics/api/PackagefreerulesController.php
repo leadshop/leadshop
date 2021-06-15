@@ -63,7 +63,7 @@ class PackagefreerulesController extends BasicController
 
         $data = new ActiveDataProvider(
             [
-                'query'      => $this->modelClass::find()->where($where)->asArray(),
+                'query'      => $this->modelClass::find()->where($where)->orderBy(['created_time'=>SORT_DESC])->asArray(),
                 'pagination' => ['pageSize' => $pageSize, 'validatePage' => false],
             ]
         );
@@ -213,7 +213,7 @@ class PackagefreerulesController extends BasicController
     {
         $merchant_id = 1;
         $where       = ['is_deleted' => 0, 'merchant_id' => $merchant_id];
-        return $this->modelClass::find()->where($where)->asArray()->select('id,name,type,status')->all();
+        return $this->modelClass::find()->where($where)->asArray()->select('id,name,type,status')->orderBy(['created_time'=>SORT_DESC])->all();
     }
 
     /**

@@ -28,5 +28,5 @@ if (@file_exists(dirname(__DIR__) . "/install.lock")) {
 
 } else {
 
-    require __DIR__ . '/install.php';
+    require __DIR__ . '/leadshop.php';
 }

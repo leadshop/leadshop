@@ -13,6 +13,8 @@ use GuzzleHttp\Client;
 
 trait HttpRequest
 {
+    public $timeout = '5.0';
+
     protected function get($url, $query = [], $headers = [])
     {
         return $this->request('GET', $url, [
@@ -67,6 +69,12 @@ trait HttpRequest
 
     protected function getTimeout()
     {
-        return '5.0';
+        return $this->timeout;
+    }
+
+    protected function setTimeout($time)
+    {
+        $this->timeout = $time;
+        return $this;
     }
 }

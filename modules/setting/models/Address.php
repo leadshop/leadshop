@@ -37,7 +37,7 @@ class Address extends CommonModels
     {
         return [
             [['name', 'mobile', 'province', 'city', 'district', 'address', 'merchant_id', 'AppID'], 'required', 'message' => '{attribute}不能为空'],
-            [['mobile'], 'match', 'pattern' => '/^1[3|4|5|7|8][0-9]{9}$/','message' => '{attribute}必须为手机号'],
+            [['mobile'], 'match', 'pattern' => '/^1[0-9]{10}$/','message' => '{attribute}必须为手机号'],
         ];
     }
 

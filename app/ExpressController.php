@@ -27,6 +27,7 @@ class ExpressController extends BasicsModules implements Map
         }
         try {
             return \Yii::$app->express->query([
+                'code' => $post['code'] ?? '',
                 'no' => $post['no'],
                 'name' => $post['name'] ?? '',
                 'mobile' => $post['mobile'] ?? ''

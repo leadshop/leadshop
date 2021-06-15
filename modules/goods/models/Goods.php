@@ -14,7 +14,7 @@ class Goods extends CommonModels
 {
     const id               = ['bigkey' => 20, 'unique', 'comment' => 'ID'];
     const name             = ['varchar' => 100, 'notNull', 'comment' => '商品名称'];
-    const group            = ['varchar' => 255, 'notNull', 'comment' => '分类列表'];
+    const group            = ['varchar' => 1000, 'notNull', 'comment' => '分类列表'];
     const price            = ['decimal' => '10,2', 'notNull', 'comment' => '商品价格'];
     const line_price       = ['decimal' => '10,2', 'default' => 0, 'comment' => '划线价'];
     const status           = ['tinyint' => 3, 'notNull', 'default' => 1, 'comment' => '商品状态： 0 正常 1 失效/下架'];
@@ -171,6 +171,7 @@ class Goods extends CommonModels
             'services'         => '服务列表',
             'is_sale'          => '上架状态',
             'status'           => '商品状态',
+            'coupon'           => '发放优惠券',
         ];
     }
 
@@ -187,6 +188,11 @@ class Goods extends CommonModels
     public function getBody()
     {
         return $this->hasOne('goods\models\GoodsBody', ['goods_id' => 'id'])->select('id,content');
+    }
+
+    public function getCoupon()
+    {
+        return $this->hasMany('goods\models\GoodsCoupon', ['goods_id' => 'id'])->select('id,goods_id,coupon_id,number');
     }
 
     public function getPackage()

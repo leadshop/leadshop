@@ -112,7 +112,7 @@ class Payment extends Component
         $t = \Yii::$app->db->beginTransaction();
         try {
             $wechat = new CommonWechat(['AppID' => \Yii::$app->params['AppID']]);
-            $pay    = $wechat->getWechatPay([], 'weapp');
+            $pay    = $wechat->getWechatPay([], $order['source']);
             if (!$pay) {
                 throw new \Exception('请联系管理员配置支付信息');
             }

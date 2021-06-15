@@ -23,6 +23,15 @@ abstract class BaseExpress extends BaseObject
     /**@var string $no 快递单号*/
     protected $no;
 
+    /**@var string $mobile 手机号*/
+    protected $mobile = '';
+
+    /**@var string $code 快递公司品牌缩写*/
+    protected $code;
+
+    /**@var string $sort 排序*/
+    protected $sort = 0;
+
     /**@var array $config 第三方快递配置*/
     protected $config;
 
@@ -40,7 +49,7 @@ abstract class BaseExpress extends BaseObject
 
     protected function getConfig()
     {
-        $config = M('setting', 'Setting')::find()->where(['keyword' => 'express_setting', 'merchant_id' => 1, 'AppID' => \Yii::$app->params['AppID']])->select('content')->asArray()->one();
+        $config = M('setting', 'Setting')::find()->where(['keyword' => 'kb_express_setting', 'merchant_id' => 1, 'AppID' => \Yii::$app->params['AppID']])->select('content')->asArray()->one();
         if ($config) {
             return json_decode($config['content'], true);
         }

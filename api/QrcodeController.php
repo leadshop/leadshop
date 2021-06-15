@@ -27,15 +27,6 @@ class QrcodeController extends BasicsModules implements Map
 
     public function actionCreate()
     {
-        $mpConfig = isset(Yii::$app->params['apply']['weapp']) ? Yii::$app->params['apply']['weapp'] : null;
-        if (!$mpConfig || !$mpConfig['AppID'] || !$mpConfig['AppSecret']) {
-            Error('渠道参数不完整。');
-        }
-        $wechat = &load_wechat('Qrcode', [
-            'appid'     => $mpConfig['AppID'], // 填写高级调用功能的app id, 请在微信开发模式后台查询
-            'appsecret' => $mpConfig['AppSecret'], // 填写高级调用功能的密钥
-        ]);
-
         $page  = Yii::$app->request->post('page', '');
         $scene = Yii::$app->request->post('scene', 'index');
 
@@ -47,12 +38,28 @@ class QrcodeController extends BasicsModules implements Map
         }
 
         $url = $page;
-        if ($scene && $scene != 'index') {
-            $url .= '?' . $scene;
+
+        $mpConfig    = isset(Yii::$app->params['apply']['weapp']) ? Yii::$app->params['apply']['weapp'] : null;
+        $weapp_url   = '';
+        $weapp_image = '';
+        if ($mpConfig && $mpConfig['AppID'] && $mpConfig['AppSecret']) {
+            $wechat = &load_wechat('Qrcode', [
+                'appid'     => $mpConfig['AppID'], // 填写高级调用功能的app id, 请在微信开发模式后台查询
+                'appsecret' => $mpConfig['AppSecret'], // 填写高级调用功能的密钥
+            ]);
+            if ($scene && $scene != 'index') {
+                $url .= '?' . $scene;
+            }
+            try {
+                $weapp_img   = $wechat->createQrcode($data);
+                $type        = getimagesizefromstring($weapp_img)['mime']; //获取二进制流图片格式
+                $weapp_url   = $url;
+                $weapp_image = 'data:' . $type . ';base64,' . chunk_split(base64_encode($weapp_img));
+            } catch (\Exception $e) {
+                
+            }
+
         }
-        $weapp_img   = $wechat->createQrcode($data);
-        $type        = getimagesizefromstring($weapp_img)['mime']; //获取二进制流图片格式
-        $weapp_image = 'data:' . $type . ';base64,' . chunk_split(base64_encode($weapp_img));
 
         $host = Yii::$app->request->hostInfo;
         if (SHOP_ENVIRONMENT == 'we7') {
@@ -65,9 +72,10 @@ class QrcodeController extends BasicsModules implements Map
         ob_end_clean(); //清除缓冲区内容
         $wechat_image = 'data:image/png;base64,' . chunk_split(base64_encode($wechat_img));
         return [
-            'weapp'  => ['image' => $weapp_image, 'url' => $url],
+            'weapp'  => ['image' => $weapp_image, 'url' => $weapp_url],
             'wechat' => ['image' => $wechat_image, 'url' => $wechat_url],
         ];
+
     }
 
 }

@@ -3,14 +3,14 @@
  * @Author: qinuoyun
  * @Date:   2020-08-20 13:46:09
  * @Last Modified by:   qinuoyun
- * @Last Modified time: 2021-05-11 14:39:54
+ * @Last Modified time: 2021-05-18 08:56:52
  */
 namespace framework\common;
 
 use \yii\web\HttpException;
 
 /**
- * ForbiddenHttpException represents a "Forbidden" HTTP exception with status code 403.
+ * TokenHttpException represents a "Token" HTTP exception with status code 419.
  *
  * Use this exception when a user is not allowed to perform the requested action.
  * Using different credentials might or might not allow performing the requested action.

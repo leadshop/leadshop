@@ -50,10 +50,9 @@ class PayController extends BasicsModules implements Map
         foreach ($goods_name_list as $v) {
             $goods_name_str .= $v['goods_name'] . ',';
         }
-
+        $goods_name_str = rtrim($goods_name_str, ',');
         if (mb_strlen($goods_name_str) > 30) {
             $goods_name = mb_substr($goods_name_str, 0, 30);
-            $goods_name = rtrim($goods_name, ',');
             $goods_name .= '...';
         } else {
             $goods_name = $goods_name_str;

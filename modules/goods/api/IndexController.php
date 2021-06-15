@@ -295,7 +295,13 @@ class IndexController extends BasicController
     {
         $id = Yii::$app->request->get('id', false);
 
-        $result = M()::find()->where(['id' => $id, 'is_recycle' => 0])->with(['param', 'body'])->asArray()->one();
+        $result = M()::find()->where(['id' => $id, 'is_recycle' => 0])->with([
+            'param',
+            'body',
+            'coupon' => function ($q) {
+                $q->with(['info' => function ($q2) {$q2->select('id,name');}]);
+            },
+        ])->asArray()->one();
         if (empty($result)) {
             Error('商品不存在');
         }
@@ -337,6 +343,9 @@ class IndexController extends BasicController
                 break;
             case 'logisticssetting': //物流设置
                 return $this->logisticsSetting();
+                break;
+            case 'marketingsetting': //营销设置
+                return $this->marketingSetting();
                 break;
             case 'othersetting': //其他设置
                 return $this->otherSetting();
@@ -635,6 +644,50 @@ class IndexController extends BasicController
     }
 
     /**
+     * 商品发送优惠券
+     */
+    public function marketingSetting()
+    {
+        $id = Yii::$app->request->get('id', false);
+
+        $model = M()::findOne($id);
+        if (empty($model)) {
+            Error('商品不存在');
+        }
+
+        $transaction = Yii::$app->db->beginTransaction();
+        if ($model->status === 3) {
+            $model->status = 4;
+            if (!$model->save()) {
+                $transaction->rollBack();
+                Error('保存失败');
+            }
+        } elseif ($model->status !== 0 && !$model->status >= 3) {
+            Error('不能跳步骤');
+        }
+
+        $coupon = Yii::$app->request->post('coupon', []);
+        M('goods', 'GoodsCoupon')::deleteAll(['goods_id' => $id]); //批量插入前先删除之前数据
+        $col  = ['goods_id', 'coupon_id', 'number', 'created_time'];
+        $row  = [];
+        $time = time();
+        foreach ($coupon as $v) {
+            array_push($row, [$id, $v['coupon_id'], $v['number'], $time]);
+        }
+        $prefix     = Yii::$app->db->tablePrefix;
+        $table_name = $prefix . 'goods_coupon';
+        $batch_res  = Yii::$app->db->createCommand()->batchInsert($table_name, $col, $row)->execute();
+
+        if ($batch_res === count($row)) {
+            $transaction->commit();
+            return ['id' => $model->id, 'status' => $model->status];
+        } else {
+            $transaction->rollBack();
+            Error('保存失败');
+        }
+    }
+
+    /**
      * 其他设置
      * @return [type] [description]
      */
@@ -650,9 +703,9 @@ class IndexController extends BasicController
             Error('商品不存在');
         }
 
-        if ($model->status === 3) {
+        if ($model->status === 4) {
             $post['status'] = 0;
-        } elseif ($model->status !== 0 && !$model->status >= 3) {
+        } elseif ($model->status !== 0 && !$model->status >= 4) {
             Error('不能跳步骤');
         }
 
