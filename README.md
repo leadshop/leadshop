@@ -151,7 +151,7 @@ Linux+Nginx+PHP7.4+MySQL5.7.3以上
  <img border="0" src="https://leadshop-1302407761.cos.ap-shanghai.myqcloud.com/public/attachments/2021/06/03/CGAUS3jcr3K3BfQYwnzalpR6OvWkjDcrc9hC2wUy.png">
 
 ## Ladshop用户案例
-![展示图](https://leadshop-1302407761.cos.ap-shanghai.myqcloud.com/public/attachments/2021/06/11/hrTqLk0TQ14r3w5mBkrxrgXDPRPSfQlXASHzpx9q.png)
+<a href="https://forum.leadshop.vip/category/10?search_ids=10" target="_blank"> **点击查看更多Leadshop用户案例** </a>
 
 ## Ladshop功能简介
 ![展示图](https://qmxq.oss-cn-hangzhou.aliyuncs.com/readme/20210522/1.png)
