@@ -12,7 +12,7 @@ node_modules
 /system/wechat/Cache
 
 error_log.txt
-market.json
+/market.json
 
 # local env files
 .env.local
